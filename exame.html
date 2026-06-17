@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exame de Consciência — Confissão</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Lato:wght@300;400;700&display=swap');
+
+  :root {
+    --ouro:     #B8860B;
+    --ouro-claro: #D4A843;
+    --marfim:   #FAF7F2;
+    --pergaminho: #F0EAE0;
+    --castanho: #4A3728;
+    --castanho-medio: #6B4F3A;
+    --cinza-quente: #8C7B6E;
+    --branco:   #FFFFFF;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: var(--marfim);
+    color: var(--castanho);
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    line-height: 1.8;
+    min-height: 100vh;
+  }
+
+  .header-ornament {
+    background: linear-gradient(135deg, var(--castanho) 0%, #2C1A0E 100%);
+    padding: 48px 24px 36px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header-ornament::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: radial-gradient(ellipse at 20% 50%, rgba(184,134,11,0.15) 0%, transparent 60%),
+                      radial-gradient(ellipse at 80% 50%, rgba(184,134,11,0.10) 0%, transparent 60%);
+  }
+
+  .cross-symbol {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--ouro-claro);
+    display: block;
+    margin-bottom: 12px;
+    position: relative;
+  }
+
+  .header-ornament h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 600;
+    color: var(--branco);
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+    position: relative;
+  }
+
+  .header-ornament .subtitulo {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 3vw, 1.25rem);
+    color: var(--ouro-claro);
+    margin-top: 10px;
+    position: relative;
+  }
+
+  .divisor-ornamental {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 auto;
+    max-width: 320px;
+    margin-top: 20px;
+    position: relative;
+  }
+
+  .divisor-ornamental span {
+    flex: 1;
+    height: 1px;
+    background: var(--ouro);
+    opacity: 0.5;
+  }
+
+  .divisor-ornamental .losango {
+    color: var(--ouro);
+    font-size: 0.6rem;
+  }
+
+  .oracao-intro {
+    background: var(--pergaminho);
+    border-left: 3px solid var(--ouro);
+    max-width: 720px;
+    margin: 36px auto 0;
+    padding: 28px 32px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .oracao-intro p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--castanho-medio);
+    line-height: 1.9;
+  }
+
+  .oracao-intro .atribuicao {
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-size: 0.78rem;
+    color: var(--cinza-quente);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 10px;
+    display: block;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  .secao {
+    margin-bottom: 48px;
+    background: var(--branco);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(74,55,40,0.08);
+  }
+
+  .secao-header {
+    background: linear-gradient(90deg, var(--castanho) 0%, var(--castanho-medio) 100%);
+    padding: 18px 28px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .secao-numero {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--ouro);
+    line-height: 1;
+    min-width: 32px;
+  }
+
+  .secao-titulo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--branco);
+    letter-spacing: 0.02em;
+  }
+
+  .secao-corpo {
+    padding: 24px 28px;
+  }
+
+  .secao-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--cinza-quente);
+    margin-bottom: 20px;
+    font-size: 0.98rem;
+  }
+
+  .subtitulo-grupo {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--castanho);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 26px 0 10px;
+    border-left: 3px solid var(--ouro);
+    padding-left: 12px;
+  }
+
+  .item-exame {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--pergaminho);
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .item-exame:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .item-marcador {
+    width: 8px;
+    height: 8px;
+    background: var(--ouro);
+    transform: rotate(45deg);
+    margin-top: 8px;
+    flex-shrink: 0;
+  }
+
+  .item-texto {
+    flex: 1;
+  }
+
+  .item-texto strong {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--castanho);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .item-texto p {
+    font-size: 0.92rem;
+    color: var(--cinza-quente);
+    line-height: 1.7;
+  }
+
+  .citacao {
+    background: var(--pergaminho);
+    border-radius: 4px;
+    padding: 16px 20px;
+    margin-top: 16px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .citacao::before {
+    content: '"';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    color: var(--ouro);
+    line-height: 0.8;
+    flex-shrink: 0;
+  }
+
+  .citacao-texto {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--castanho-medio);
+    line-height: 1.7;
+  }
+
+  .citacao-autor {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.75rem;
+    color: var(--cinza-quente);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 6px;
+    display: block;
+    font-style: normal;
+  }
+
+  .atrição-box {
+    background: linear-gradient(135deg, var(--castanho) 0%, #2C1A0E 100%);
+    border-radius: 8px;
+    padding: 36px 32px;
+    text-align: center;
+    margin-top: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .atrição-box::before {
+    content: '+';
+    position: absolute;
+    font-size: 10rem;
+    color: rgba(255,255,255,0.03);
+    top: -20px;
+    right: -10px;
+    line-height: 1;
+  }
+
+  .atrição-box h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    color: var(--ouro-claro);
+    margin-bottom: 20px;
+    letter-spacing: 0.04em;
+  }
+
+  .atrição-box p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.88);
+    line-height: 2;
+    position: relative;
+  }
+
+  .proposito {
+    background: var(--pergaminho);
+    border: 1px solid rgba(184,134,11,0.3);
+    border-radius: 6px;
+    padding: 28px;
+    margin-top: 32px;
+  }
+
+  .proposito h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--castanho);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .proposito h3::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--ouro);
+  }
+
+  .proposito ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .proposito ul li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(184,134,11,0.15);
+    font-size: 0.95rem;
+    color: var(--castanho-medio);
+    padding-left: 18px;
+    position: relative;
+  }
+
+  .proposito ul li::before {
+    content: '◆';
+    font-size: 0.4rem;
+    color: var(--ouro);
+    position: absolute;
+    left: 0;
+    top: 13px;
+  }
+
+  .proposito ul li:last-child {
+    border-bottom: none;
+  }
+
+  footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 0.8rem;
+    color: var(--cinza-quente);
+    letter-spacing: 0.04em;
+  }
+
+  @media print {
+    body { background: white; }
+    .secao { box-shadow: none; border: 1px solid #ddd; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header-ornament">
+  <span class="cross-symbol">+</span>
+  <h1>Exame de Consciência</h1>
+  <p class="subtitulo">Preparação para uma Confissão Sincera</p>
+  <div class="divisor-ornamental">
+    <span></span>
+    <span class="losango">◆ ◆ ◆</span>
+    <span></span>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="oracao-intro">
+    <p>
+      Vem, Espírito Santo, ilumina minha consciência e dá-me a graça de ver minha alma como Tu a vês.
+      São José, guia-me com teu silêncio e tua fidelidade.
+      São Josemaria, intercede por mim, para que eu santifique este momento de encontro com a Misericórdia de Deus.
+    </p>
+    <span class="atribuicao">Oração antes do exame</span>
+  </div>
+
+  <!-- SEÇÃO 1 — RELAÇÃO COM DEUS -->
+  <div class="secao" style="margin-top: 40px;">
+    <div class="secao-header">
+      <span class="secao-numero">I</span>
+      <span class="secao-titulo">Minha Relação com Deus</span>
+    </div>
+    <div class="secao-corpo">
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>Oração diária</strong>
+          <p>Houve dias em que não rezei nada — nem um ato de amor, nem um Pai-Nosso? Quando me aproximei de Deus, foi com coração presente ou por obrigação?</p>
+        </div>
+      </div>
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>Santa Missa</strong>
+          <p>Faltei à Missa dominical sem necessidade grave — por preguiça ou falta de vontade? Tratei a Eucaristia como o dom que ela é, ou como mais um item da semana?</p>
+        </div>
+      </div>
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>Confissão</strong>
+          <p>Há quanto tempo não me confesso? Esse afastamento foi por medo, por achar que não precisava, por vergonha ou por tibieza? A Confissão é o abraço do Pai ao filho pródigo — quanto tempo me privei dele?</p>
+        </div>
+      </div>
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>Filiação divina — vivo como filha de Deus?</strong>
+          <p>São Josemaria insistia que o centro da vida espiritual é saber-se filha de Deus. No meu dia a dia, recorro a Ele como Pai — nas pequenas decisões, nas alegrias, nos medos? Ou só "lembro" de Deus quando algo dá errado?</p>
+        </div>
+      </div>
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>Coerência da devoção</strong>
+          <p>Vivo as virtudes dos santos que admiro — silêncio interior, confiança nas trevas (quando não entendo o plano de Deus), fidelidade no escondido — ou minha devoção é mais sentimental do que vivida?</p>
+        </div>
+      </div>
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>Unidade de vida</strong>
+          <p>São Josemaria falava de "unidade de vida" — não ter uma vida espiritual separada da vida real. Há contradição entre a pessoa que rezo para ser e a pessoa que realmente sou nas escolhas concretas da semana?</p>
+        </div>
+      </div>
+
+      <div class="citacao">
+        <div>
+          <p class="citacao-texto">A oração é a âncora. Quem reza, salva-se; quem não reza, perde-se. Não há outro caminho.</p>
+          <span class="citacao-autor">São Josemaria Escrivá</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SEÇÃO 2 — FAMÍLIA E PRÓXIMO -->
+  <div class="secao">
+    <div class="secao-header">
+      <span class="secao-numero">II</span>
+      <span class="secao-titulo">Família e Pessoas Próximas</span>
+    </div>
+    <div class="secao-corpo">
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>Presença real</strong>
+          <p>Estive corporalmente presente, mas mentalmente ausente — no celular, nos pensamentos, na distração? As pessoas que amo sentiram minha atenção e carinho genuínos?</p>
+        </div>
+      </div>
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>Fofoca e falar mal dos outros</strong>
+          <p>Falei de pessoas ausentes de forma que diminuiu ou manchou sua reputação? Ouvi fofoca sem corrigi-la ou sem me afastar? Usei palavras que feriram a honra de alguém?</p>
+        </div>
+      </div>
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>A raiz por trás da fofoca</strong>
+          <p>Quando falo mal de alguém, é para me sentir superior, para criar intimidade com quem ouve, para descarregar uma frustração, ou por puro hábito de linguagem? Conhecer a raiz ajuda a cortá-la.</p>
+        </div>
+      </div>
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>Mágoas e rancores guardados</strong>
+          <p>Existe alguém — mesmo que eu diga que "já perdoei" — que ainda me causa um aperto no peito quando penso nela? Há diferença entre perdão decidido na vontade e perdão sentido no coração; ambos merecem ser trabalhados diante de Deus.</p>
+        </div>
+      </div>
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>Caridade no trabalho e nas amizades</strong>
+          <p>Trato colegas e amigos com a mesma caridade que gostaria de receber? Há ciúme, competitividade não saudável, ou desejo de que o outro falhe para eu me destacar?</p>
+        </div>
+      </div>
+
+      <div class="citacao">
+        <div>
+          <p class="citacao-texto">São José amou em silêncio. Não havia nele palavra supérflua — só ação, só presença, só doação. Esse é o modelo de quem ama de verdade.</p>
+          <span class="citacao-autor">Meditação sobre São José</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SEÇÃO 3 — TRABALHO E INTEGRIDADE -->
+  <div class="secao">
+    <div class="secao-header">
+      <span class="secao-numero">III</span>
+      <span class="secao-titulo">Trabalho, Integridade e Vida Cotidiana</span>
+    </div>
+    <div class="secao-corpo">
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>Preguiça e procrastinação</strong>
+          <p>Deixei de cumprir minhas responsabilidades com diligência? A preguiça me fez falhar com pessoas que dependiam de mim? Tratei o trabalho cotidiano como oração — como São Josemaria ensinava — ou como peso e fardo?</p>
+        </div>
+      </div>
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>Honestidade</strong>
+          <p>Menti para evitar consequências ou para proteger alguém de forma desonesta? Pequei contra a verdade de formas sutis — exageros, meias verdades, silêncios convenientes? Prejudiquei alguém com minha falta de honestidade?</p>
+        </div>
+      </div>
+
+      <div class="citacao">
+        <div>
+          <p class="citacao-texto">São José era carpinteiro. Trabalhava com as mãos. E Deus escolheu um homem de trabalho para ser o pai de Jesus. Tuas tarefas de hoje são santas — se as ofereces.</p>
+          <span class="citacao-autor">São Josemaria Escrivá</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SEÇÃO 4 — VIDA INTERIOR -->
+  <div class="secao">
+    <div class="secao-header">
+      <span class="secao-numero">IV</span>
+      <span class="secao-titulo">Vida Interior — Vícios e Paixões</span>
+    </div>
+    <div class="secao-corpo">
+
+      <p class="secao-intro">
+        Esta seção é mais detalhada de propósito. Não tenha pressa — deixe cada pergunta realmente "escavar". Você não precisa responder a tudo em voz alta para ninguém além de Deus e, depois, de quem te ouvir em confissão.
+      </p>
+
+      <h4 class="subtitulo-grupo">Orgulho</h4>
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>Resistência à correção</strong>
+          <p>Quando alguém me corrigiu ou apontou um erro meu, minha primeira reação interior foi de defesa, irritação ou justificativa — antes mesmo de considerar se a pessoa tinha razão?</p>
+        </div>
+      </div>
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>Necessidade de ser vista e aprovada</strong>
+          <p>Faço coisas boas, mas em segredo desejo que sejam notadas e elogiadas? Minha alegria diminui quando não sou reconhecida pelo que faço? Há vaidade escondida nas minhas boas obras?</p>
+        </div>
+      </div>
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>Autossuficiência espiritual</strong>
+          <p>Tenho a sensação de "já sei o que é certo" e dispenso conselho de quem tem mais experiência espiritual? Há resistência em obedecer orientações da Igreja por simplesmente não querer me submeter?</p>
+        </div>
+      </div>
+
+      <h4 class="subtitulo-grupo">Inveja</h4>
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>Comparação constante</strong>
+          <p>Ao ver a vida de alguém nas redes sociais ou na realidade — corpo, relacionamento, conquistas, reconhecimento — meu coração se contrai em tristeza ou inquietação em vez de gratidão pela minha própria vida?</p>
+        </div>
+      </div>
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>Alegria diante da queda do outro</strong>
+          <p>Já senti, mesmo que por um instante, um certo alívio ou satisfação quando alguém que eu invejava passou por uma dificuldade ou fracasso?</p>
+        </div>
+      </div>
+
+      <h4 class="subtitulo-grupo">Sensualidade e Pureza</h4>
+
+      <p style="font-size:0.9rem; color:var(--cinza-quente); margin-bottom:14px;">
+        São Josemaria falava da castidade não como repressão, mas como <em>"a alegre afirmação"</em> de que o corpo e o coração pertencem a Deus. Examine com liberdade interior, sem culpa paralisante — só sinceridade.
+      </p>
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>Pensamentos voluntariamente consentidos</strong>
+          <p>Quando surgiu um pensamento impuro, eu o rejeitei imediatamente ou me demorei nele de forma deliberada? Há diferença entre a tentação que chega (que não é pecado) e o consentimento que eu dou a ela (que pode ser).</p>
+        </div>
+      </div>
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>Conteúdos buscados ou consumidos</strong>
+          <p>Busquei deliberadamente imagens, vídeos, textos ou conversas de conteúdo sexual? Isso aconteceu uma vez, isoladamente, ou se tornou um padrão repetido?</p>
+        </div>
+      </div>
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>Atos solitários ou com outra pessoa</strong>
+          <p>Houve atos concretos contra a castidade — sozinha ou com outra pessoa? Dentro ou fora do matrimônio? No confessionário, dizer com simplicidade "pequei contra a castidade, de tal forma, tantas vezes" já é suficiente e honesto.</p>
+        </div>
+      </div>
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>Ocasiões próximas</strong>
+          <p>Há uma situação, pessoa, aplicativo, horário do dia ou estado emocional que normalmente antecede a queda? Identificar o "padrão" é tão importante quanto confessar o ato — porque é ali que a graça e a prudência podem agir juntas na próxima vez.</p>
+        </div>
+      </div>
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>Vergonha que isola</strong>
+          <p>O peso disso me afastou da Confissão por vergonha? Vale lembrar: não existe pecado tão grande quanto a misericórdia de Deus.</p>
+        </div>
+      </div>
+
+      <h4 class="subtitulo-grupo">Gula e Falta de Temperança</h4>
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>Uso do prazer como fuga</strong>
+          <p>Comida, tela, compras ou outros consumos se tornaram uma forma de anestesiar emoções difíceis em vez de as enfrentar com Deus em oração?</p>
+        </div>
+      </div>
+
+      <div class="citacao">
+        <div>
+          <p class="citacao-texto">Não tenhas medo de tua própria fragilidade. O importante não é nunca cair, é nunca deixar de te levantar e correr de volta ao confessionário.</p>
+          <span class="citacao-autor">Inspirado nos escritos de São Josemaria Escrivá</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SEÇÃO 4B — PENSAMENTOS E VIDA ESCONDIDA -->
+  <div class="secao">
+    <div class="secao-header">
+      <span class="secao-numero">IV-B</span>
+      <span class="secao-titulo">Pensamentos, Intenções e Vida Escondida</span>
+    </div>
+    <div class="secao-corpo">
+
+      <p class="secao-intro">
+        São Josemaria insistia: a santidade se vive nos detalhes escondidos, no que ninguém vê. Esta seção examina o que acontece quando ninguém está olhando.
+      </p>
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>Intenção por trás das ações boas</strong>
+          <p>Quando faço algo bom, examino para quem realmente faço — para Deus, para os outros, ou secretamente para mim mesma, para minha imagem?</p>
+        </div>
+      </div>
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>Pensamentos de julgamento</strong>
+          <p>Há uma voz interior frequente que julga, condena ou menospreza os outros silenciosamente — mesmo quando externamente sou educada? Esse julgamento interno é confessável tanto quanto a palavra dita.</p>
+        </div>
+      </div>
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>O que faço quando estou sozinha</strong>
+          <p>Minha vida quando ninguém me vê reflete a mesma pessoa que aparento ser em público? Há uma dupla vida, ainda que pequena, entre o "eu visível" e o "eu escondido"?</p>
+        </div>
+      </div>
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>Desejos não realizados, mas acalentados</strong>
+          <p>Há desejos de vingança, de mal a alguém, ou fantasias de situações pecaminosas que cultivo internamente, mesmo sem realizá-las externamente? O pecado começa no consentimento da vontade, não apenas no ato.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SEÇÃO 5 — MISSÃO E CARIDADE -->
+  <div class="secao">
+    <div class="secao-header">
+      <span class="secao-numero">V</span>
+      <span class="secao-titulo">Missão, Caridade e Testemunho</span>
+    </div>
+    <div class="secao-corpo">
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>Caridade que fica só na intenção</strong>
+          <p>Quantas vezes senti o impulso de ajudar e não agi? Há alguém que esperou por mim e eu não fui? Que oportunidade concreta de servir eu deixei passar?</p>
+        </div>
+      </div>
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>Testemunho da fé</strong>
+          <p>Vivo minha fé abertamente, com naturalidade, sem vergonha? O testemunho é coerente com a vida interior, ou há contradição entre o que professo e o que vivo no silêncio de casa?</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SEÇÃO PRÁTICA — COMO FALAR COM O PADRE -->
+  <div class="secao">
+    <div class="secao-header">
+      <span class="secao-numero">VI</span>
+      <span class="secao-titulo">Como Apresentar Tudo Isso ao Padre</span>
+    </div>
+    <div class="secao-corpo">
+
+      <p class="secao-intro">
+        Depois de um exame profundo, é normal sentir que há "muita coisa". Aqui vai um caminho simples para organizar a fala no confessionário, sem precisar memorizar nada.
+      </p>
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>1. Comece pelo tempo</strong>
+          <p>"Padre, minha última confissão foi há [tempo]." Isso já orienta o padre sobre o contexto.</p>
+        </div>
+      </div>
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>2. Seja direta e concreta, sem rodeios nem excesso de detalhes</strong>
+          <p>Para pecados de pureza, por exemplo: "Pequei contra a castidade, com pensamentos consentidos e [atos / conteúdo], algumas vezes." Isso já é completo e suficiente — o padre não precisa de roteiro nem de justificativas, só da matéria, e ajuda saber aproximadamente a frequência.</p>
+        </div>
+      </div>
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>3. Para os outros pecados, uma frase basta para cada</strong>
+          <p>"Faltei à caridade falando mal de pessoas por hábito." "Fui preguiçosa com meus deveres." "Menti para me proteger." Não precisa de história — só o fato e, se ajudar, a frequência aproximada.</p>
+        </div>
+      </div>
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>4. Se travar de vergonha, diga isso também</strong>
+          <p>"Padre, estou com vergonha de dizer isto" já é uma frase válida dentro do confessionário — os padres ouvem isso o tempo todo e vão te ajudar a continuar com delicadeza.</p>
+        </div>
+      </div>
+
+      <div class="item-exame">
+        <div class="item-marcador"></div>
+        <div class="item-texto">
+          <strong>5. Termine pedindo orientação, se quiser</strong>
+          <p>Pode perguntar algo como: "Padre, o que o senhor me aconselha para não cair de novo nisso?" Esse é o papel dele — e ninguém vai te julgar por pedir ajuda prática.</p>
+        </div>
+      </div>
+
+      <div class="citacao">
+        <div>
+          <p class="citacao-texto">O confessor não é um juiz que mede, mas um pai que abraça o filho que volta. Vai sem medo: o que te espera ali é a Misericórdia, não a condenação.</p>
+          <span class="citacao-autor">Inspirado no espírito de São Josemaria</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Ato de contrição -->
+  <div class="atrição-box">
+    <h3>Ato de Contrição</h3>
+    <p>
+      Meu Deus, porque sois infinitamente bom e digno de ser amado,<br>
+      pesa-me muito ter-Vos ofendido.<br>
+      Proponho firmemente, com o auxílio da vossa graça,<br>
+      não Vos tornar a ofender, evitar as ocasiões de pecado<br>
+      e emendar a minha vida.<br>
+      Amém.
+    </p>
+  </div>
+
+  <!-- Propósito de emenda -->
+  <div class="proposito">
+    <h3>Propósito de Emenda — O que levar da confissão</h3>
+    <ul>
+      <li>Estabelecer um horário fixo de oração diária — mesmo que breve, com coração presente</li>
+      <li>Antes de falar de alguém ausente, perguntar: "Diria isso se ela estivesse aqui?"</li>
+      <li>Ofertar cada tarefa do dia a Deus ao começá-la, santificando o trabalho como São José</li>
+      <li>Identificar o padrão (horário, estado emocional, situação) que antecede a queda em pureza, e tomar uma medida prática concreta para essa ocasião próxima</li>
+      <li>Diante de pensamentos impuros, invocar imediatamente "Jesus, Maria e José!" e mudar de atividade no mesmo instante</li>
+      <li>Converter uma intenção de ajuda em ação concreta na semana que vem</li>
+      <li>Considerar uma confissão frequente (mensal, por exemplo) para não deixar o peso se acumular novamente</li>
+      <li>Combinar a próxima Confissão antes de sair do confessionário hoje</li>
+    </ul>
+  </div>
+
+</div>
+
+<footer>
+  + &nbsp; Sob a proteção de São José e a intercessão de São Josemaria Escrivá <br> @biaLopes &nbsp; +
+</footer>
+
+</body>
+</html>
