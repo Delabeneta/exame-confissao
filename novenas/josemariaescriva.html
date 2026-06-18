@@ -1,0 +1,1787 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Novena do Trabalho — São Josemaria Escrivá</title>
+<script>
+  (function () {
+    try {
+      var salvo = localStorage.getItem('novena-trabalho-tema');
+      if (salvo === 'escuro' || (salvo === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.setAttribute('data-tema', 'escuro');
+      }
+    } catch (e) {}
+  })();
+</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Cores Base - Paleta "Missa Contemplativa" */
+  --marrom-mais-escuro: #1A120E;
+  --marrom-escuro: #2D1F16;
+  --marrom-medio: #3D2B1F;
+  --marrom-claro: #5A3F2E;
+  --bege-escuro: #8B7A6B;
+  --bege: #D4C8BC;
+  --bege-claro: #E8DDD2;
+  --creme: #F0E7DC;
+  --creme-claro: #F7F0E8;
+  --off-white: #FAF5EF;
+  --ouro: #C4961A;
+  --ouro-claro: #DBA84A;
+  --ouro-escuro: #8B6B0B;
+  --ouro-muito-claro: #F0DFB8;
+  --cinza-quente: #A69586;
+  
+  /* Tokens Semânticos */
+  --bg: var(--creme-claro);
+  --bg-cartao: var(--off-white);
+  --bg-alt: var(--creme);
+  --bg-destaque: var(--bege-claro);
+  --bg-secao-header: linear-gradient(135deg, #2D1F16 0%, #3D2B1F 100%);
+  
+  --texto-primario: var(--marrom-mais-escuro);
+  --texto-secundario: var(--marrom-escuro);
+  --texto-corpo: var(--marrom-medio);
+  --texto-terciario: var(--marrom-claro);
+  --texto-apoio: var(--bege-escuro);
+  
+  --cor-primaria: var(--ouro);
+  --cor-primaria-hover: var(--ouro-claro);
+  --cor-primaria-escura: var(--ouro-escuro);
+  --cor-secundaria: var(--marrom-escuro);
+  
+  --borda: var(--bege);
+  --borda-fraca: rgba(212, 200, 188, 0.25);
+  --borda-ouro: rgba(196, 150, 26, 0.3);
+  
+  --sombra-sutil: 0 1px 3px rgba(26, 18, 14, 0.06);
+  --sombra-media: 0 8px 24px rgba(26, 18, 14, 0.05);
+  --sombra-forte: 0 4px 20px rgba(26, 18, 14, 0.1);
+  --sombra-cartao: var(--sombra-sutil), var(--sombra-media);
+  --sombra-botao: 0 4px 14px rgba(26, 18, 14, 0.2);
+  
+  /* Tipografia */
+  --fonte-titulo: 'Cormorant Garamond', serif;
+  --fonte-corpo: 'Inter', 'Lato', sans-serif;
+  
+  /* Tamanhos */
+  --texto-base: 1.125rem;
+  --texto-mobile: 1rem;
+  --texto-pequeno: 0.875rem;
+  --texto-muito-pequeno: 0.75rem;
+  --texto-grande: 1.25rem;
+  --texto-muito-grande: 1.8rem;
+  
+  /* Espaçamentos */
+  --espacamento-padrao: 24px;
+  --espacamento-grande: 32px;
+  --espacamento-pequeno: 16px;
+  --espacamento-minimo: 12px;
+  
+  /* Cantos */
+  --border-radius-padrao: 12px;
+  --border-radius-pequeno: 6px;
+  --border-radius-grande: 16px;
+  
+  /* Transições */
+  --transicao-padrao: 0.3s ease;
+  --transicao-rapida: 0.2s ease;
+}
+
+:root[data-tema="escuro"] {
+  --bg: #120D0A;
+  --bg-cartao: #1E1611;
+  --bg-alt: #2A1F16;
+  --bg-destaque: #34271A;
+  --bg-secao-header: linear-gradient(135deg, #1A120E 0%, #2D1F16 100%);
+  
+  --texto-primario: #F0E7DC;
+  --texto-secundario: #E8DDD2;
+  --texto-corpo: #D9C7B3;
+  --texto-terciario: #C4B49E;
+  --texto-apoio: #A69586;
+  
+  --cor-primaria: #DBA84A;
+  --cor-primaria-hover: #E8BD5C;
+  --cor-primaria-escura: #B8922F;
+  
+  --borda: rgba(255, 255, 255, 0.08);
+  --borda-fraca: rgba(255, 255, 255, 0.05);
+  --borda-ouro: rgba(219, 168, 74, 0.25);
+  
+  --sombra-sutil: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --sombra-media: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --sombra-forte: 0 4px 20px rgba(0, 0, 0, 0.5);
+  --sombra-cartao: var(--sombra-sutil), var(--sombra-media);
+  --sombra-botao: 0 4px 14px rgba(0, 0, 0, 0.5);
+}
+
+/* Reset e Base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: background-color var(--transicao-padrao), 
+              color var(--transicao-padrao), 
+              border-color var(--transicao-padrao),
+              box-shadow var(--transicao-padrao);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--texto-primario);
+  font-family: var(--fonte-corpo);
+  font-weight: 400;
+  font-size: var(--texto-base);
+  line-height: 1.8;
+  min-height: 100vh;
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: var(--texto-mobile);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Acessibilidade - Foco */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--cor-primaria);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* Scroll Margin */
+[id] {
+  scroll-margin-top: 24px;
+}
+
+/* ============= HEADER ============= */
+.header-ornament {
+  background: linear-gradient(135deg, var(--marrom-escuro) 0%, var(--marrom-mais-escuro) 100%);
+  padding: 56px 24px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.header-ornament::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse at 25% 50%, rgba(196, 150, 26, 0.08) 0%, transparent 55%),
+    radial-gradient(ellipse at 75% 50%, rgba(196, 150, 26, 0.05) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 90%, rgba(45, 31, 22, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.header-ornament::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    repeating-linear-gradient(90deg, 
+      transparent, 
+      transparent 2px, 
+      rgba(255, 255, 255, 0.02) 2px, 
+      rgba(255, 255, 255, 0.02) 4px
+    );
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.cross-symbol {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--cor-primaria-hover);
+  display: block;
+  margin-bottom: 16px;
+  position: relative;
+  text-shadow: 0 0 40px rgba(196, 150, 26, 0.15);
+}
+
+.header-ornament h1 {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  color: var(--off-white);
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  position: relative;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.header-ornament .subtitulo {
+  font-family: var(--fonte-titulo);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
+  color: var(--cor-primaria-hover);
+  margin-top: 12px;
+  position: relative;
+  opacity: 0.9;
+}
+
+.divisor-ornamental {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 24px auto 0;
+  max-width: 360px;
+  position: relative;
+}
+
+.divisor-ornamental span {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cor-primaria), transparent);
+  opacity: 0.5;
+}
+
+.divisor-ornamental .losango {
+  color: var(--cor-primaria);
+  font-size: 0.7rem;
+  letter-spacing: 6px;
+  opacity: 0.7;
+}
+
+/* ============= CONTAINER ============= */
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 32px 16px 80px;
+  }
+}
+
+/* ============= ORAÇÃO INTRO ============= */
+.oracao-intro {
+  background: var(--bg-alt);
+  border-left: 4px solid var(--cor-primaria);
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 32px 36px;
+  border-radius: 0 var(--border-radius-pequeno) var(--border-radius-pequeno) 0;
+  box-shadow: var(--sombra-sutil);
+}
+
+@media (max-width: 480px) {
+  .oracao-intro {
+    padding: 24px 20px;
+  }
+}
+
+.oracao-intro p {
+  font-family: var(--fonte-titulo);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.15rem;
+  color: var(--texto-secundario);
+  line-height: 1.9;
+}
+
+@media (max-width: 480px) {
+  .oracao-intro p {
+    font-size: 1.05rem;
+  }
+}
+
+.oracao-intro .atribuicao {
+  font-family: var(--fonte-corpo);
+  font-style: normal;
+  font-weight: 600;
+  font-size: var(--texto-muito-pequeno);
+  color: var(--texto-apoio);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 12px;
+  display: block;
+}
+
+/* ============= BOTÕES FLUTUANTES ============= */
+.acoes-flutuantes {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 50;
+}
+
+.alterna-tema {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--bg-cartao);
+  border: 1px solid var(--borda-ouro);
+  color: var(--cor-primaria);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: var(--sombra-botao);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transicao-rapida), 
+              transform var(--transicao-rapida), 
+              border-color var(--transicao-rapida),
+              box-shadow var(--transicao-rapida);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+@media (max-width: 480px) {
+  .alterna-tema {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+@media (hover: hover) {
+  .alterna-tema:hover {
+    transform: scale(1.06);
+    border-color: var(--cor-primaria);
+    box-shadow: var(--sombra-forte), 0 0 20px rgba(196, 150, 26, 0.1);
+  }
+}
+
+.alterna-tema:active {
+  transform: scale(0.94);
+}
+
+.voltar-topo {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--bg-secao-header);
+  color: var(--cor-primaria-hover);
+  border: none;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: var(--sombra-botao);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px) scale(0.9);
+  transition: opacity var(--transicao-padrao), 
+              transform var(--transicao-padrao), 
+              visibility var(--transicao-padrao),
+              box-shadow var(--transicao-rapida);
+}
+
+.voltar-topo.visivel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+@media (hover: hover) {
+  .voltar-topo:hover {
+    box-shadow: var(--sombra-forte);
+    transform: translateY(-2px) scale(1.04);
+  }
+  
+  .voltar-topo.visivel:hover {
+    transform: translateY(-2px) scale(1.04);
+  }
+}
+
+.voltar-topo:active {
+  transform: scale(0.94) !important;
+}
+
+@media (max-width: 480px) {
+  .voltar-topo {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+/* ============= ÍNDICE ============= */
+.indice {
+  background: var(--bg-cartao);
+  border-radius: var(--border-radius-padrao);
+  padding: 28px 32px;
+  margin-bottom: 48px;
+  box-shadow: var(--sombra-cartao);
+  border: 1px solid var(--borda);
+}
+
+@media (max-width: 480px) {
+  .indice {
+    padding: 20px 16px;
+    margin-bottom: 32px;
+  }
+}
+
+.indice h3 {
+  font-family: var(--fonte-titulo);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--texto-secundario);
+  margin-bottom: 18px;
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+
+.indice-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+@media (max-width: 480px) {
+  .indice-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+}
+
+@media (max-width: 360px) {
+  .indice-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+}
+
+.indice-item {
+  font-size: var(--texto-pequeno);
+  color: var(--texto-terciario);
+  padding: 10px 12px;
+  background: var(--bg-alt);
+  border-radius: var(--border-radius-pequeno);
+  text-align: center;
+  line-height: 1.4;
+  border: 1px solid transparent;
+  transition: border-color var(--transicao-rapida), background-color var(--transicao-rapida);
+}
+
+@media (hover: hover) {
+  .indice-item:hover {
+    border-color: var(--borda-ouro);
+    background: var(--bg-destaque);
+  }
+}
+
+.indice-item strong {
+  display: block;
+  font-family: var(--fonte-titulo);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--cor-primaria);
+}
+
+/* ============= SEÇÕES ============= */
+.secao {
+  margin-bottom: 48px;
+  background: var(--bg-cartao);
+  border: 1px solid var(--borda);
+  border-radius: var(--border-radius-padrao);
+  overflow: hidden;
+  box-shadow: var(--sombra-cartao);
+  transition: box-shadow var(--transicao-padrao);
+  page-break-inside: avoid;
+}
+
+@media (max-width: 480px) {
+  .secao {
+    margin-bottom: 32px;
+  }
+}
+
+.secao:hover {
+  box-shadow: var(--sombra-forte);
+}
+
+.secao-header {
+  background: var(--bg-secao-header);
+  padding: 22px 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-radius: var(--border-radius-padrao) var(--border-radius-padrao) 0 0;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 480px) {
+  .secao-header {
+    padding: 18px 20px;
+    gap: 12px;
+  }
+}
+
+.secao-header::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.03), 
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: transform 0.8s ease;
+  pointer-events: none;
+}
+
+.secao:hover .secao-header::after {
+  transform: skewX(-20deg) translateX(50%);
+}
+
+.secao-numero {
+  font-family: var(--fonte-titulo);
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--cor-primaria);
+  line-height: 1;
+  min-width: 44px;
+  text-shadow: 0 2px 8px rgba(196, 150, 26, 0.15);
+}
+
+@media (max-width: 480px) {
+  .secao-numero {
+    font-size: 2.2rem;
+    min-width: 36px;
+  }
+}
+
+.secao-titulo-grupo {
+  flex: 1;
+  min-width: 0;
+}
+
+.secao-dia {
+  font-family: var(--fonte-corpo);
+  font-size: var(--texto-muito-pequeno);
+  font-weight: 700;
+  color: var(--cor-primaria-hover);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+  opacity: 0.8;
+}
+
+.secao-titulo {
+  font-family: var(--fonte-titulo);
+  font-size: var(--texto-grande);
+  font-weight: 700;
+  color: var(--off-white);
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 480px) {
+  .secao-titulo {
+    font-size: 1.15rem;
+  }
+}
+
+.secao-corpo {
+  padding: 28px 32px;
+}
+
+@media (max-width: 480px) {
+  .secao-corpo {
+    padding: 20px 16px;
+  }
+}
+
+/* ============= RÓTULOS ============= */
+.rotulo {
+  font-family: var(--fonte-corpo);
+  font-size: var(--texto-muito-pequeno);
+  font-weight: 700;
+  color: var(--cor-primaria);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rotulo::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--borda-ouro);
+}
+
+/* ============= REFLEXÃO ============= */
+.reflexao-bloco {
+  margin-bottom: 28px;
+}
+
+.reflexao-bloco blockquote {
+  font-family: var(--fonte-titulo);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.08rem;
+  color: var(--texto-secundario);
+  line-height: 1.85;
+  padding: 16px 18px;
+  border-left: 3px solid var(--borda-ouro);
+  margin-bottom: 14px;
+  background: var(--bg-alt);
+  border-radius: 0 var(--border-radius-pequeno) var(--border-radius-pequeno) 0;
+}
+
+@media (max-width: 480px) {
+  .reflexao-bloco blockquote {
+    font-size: 1rem;
+    padding: 14px 14px;
+  }
+}
+
+.reflexao-bloco blockquote sup {
+  color: var(--cor-primaria);
+  font-style: normal;
+  font-size: var(--texto-muito-pequeno);
+  margin-left: 2px;
+  font-weight: 700;
+}
+
+/* ============= INTENÇÕES ============= */
+.intencoes-bloco {
+  margin-bottom: 28px;
+}
+
+.intencao-toggle {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.intencao-tag {
+  font-size: var(--texto-muito-pequeno);
+  font-family: var(--fonte-corpo);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 4px;
+  background: var(--bg-alt);
+  color: var(--texto-terciario);
+  border: 1px solid var(--borda-fraca);
+}
+
+.intencao-item {
+  background: var(--bg-alt);
+  border-radius: var(--border-radius-pequeno);
+  padding: 20px 22px;
+  margin-bottom: 12px;
+  border-left: 3px solid var(--cor-primaria);
+}
+
+@media (max-width: 480px) {
+  .intencao-item {
+    padding: 16px 16px;
+  }
+}
+
+.intencao-item .letra {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background: var(--cor-primaria);
+  color: var(--off-white);
+  border-radius: 50%;
+  text-align: center;
+  line-height: 24px;
+  font-size: var(--texto-pequeno);
+  font-weight: 700;
+  margin-right: 8px;
+  font-family: var(--fonte-corpo);
+}
+
+.intencao-item .legenda {
+  font-size: var(--texto-muito-pequeno);
+  color: var(--texto-apoio);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  vertical-align: middle;
+}
+
+.intencao-item p {
+  font-family: var(--fonte-titulo);
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--texto-corpo);
+  line-height: 1.8;
+  margin-top: 10px;
+}
+
+@media (max-width: 480px) {
+  .intencao-item p {
+    font-size: 0.95rem;
+  }
+}
+
+/* ============= ORAÇÃO COMUM ============= */
+.oracao-comum {
+  background: linear-gradient(135deg, var(--marrom-escuro) 0%, var(--marrom-mais-escuro) 100%);
+  border-radius: var(--border-radius-padrao);
+  padding: 28px 32px;
+  margin-top: 8px;
+  box-shadow: var(--sombra-media);
+}
+
+@media (max-width: 480px) {
+  .oracao-comum {
+    padding: 22px 20px;
+  }
+}
+
+.oracao-comum .rotulo {
+  color: var(--cor-primaria-hover);
+}
+
+.oracao-comum .rotulo::after {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.oracao-comum p {
+  font-family: var(--fonte-titulo);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.02rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.9;
+}
+
+@media (max-width: 480px) {
+  .oracao-comum p {
+    font-size: 0.95rem;
+  }
+}
+
+.pai-nosso {
+  text-align: center;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: var(--fonte-corpo);
+  font-size: var(--texto-pequeno);
+  font-weight: 600;
+  color: var(--cor-primaria-hover);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ============= NOTA EXTRA ============= */
+.nota-extra {
+  font-family: var(--fonte-titulo);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--texto-apoio);
+  margin-top: 20px;
+  padding: 14px 18px;
+  border-left: 3px dashed var(--cor-primaria);
+  background: rgba(196, 150, 26, 0.04);
+  border-radius: 0 var(--border-radius-pequeno) var(--border-radius-pequeno) 0;
+}
+
+@media (max-width: 480px) {
+  .nota-extra {
+    font-size: 0.9rem;
+    padding: 12px 14px;
+  }
+}
+
+/* ============= NOTAS FINAIS ============= */
+.notas-finais {
+  background: var(--bg-cartao);
+  border-radius: var(--border-radius-padrao);
+  padding: 28px 32px;
+  margin-top: 8px;
+  box-shadow: var(--sombra-cartao);
+  border: 1px solid var(--borda);
+}
+
+@media (max-width: 480px) {
+  .notas-finais {
+    padding: 20px 16px;
+  }
+}
+
+.notas-finais h3 {
+  font-family: var(--fonte-titulo);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--texto-secundario);
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.notas-finais ol {
+  list-style: none;
+  counter-reset: nota;
+  padding: 0;
+}
+
+.notas-finais ol li {
+  counter-increment: nota;
+  font-size: var(--texto-pequeno);
+  color: var(--texto-apoio);
+  padding: 8px 0;
+  padding-left: 32px;
+  position: relative;
+  border-bottom: 1px solid var(--borda-fraca);
+  line-height: 1.6;
+}
+
+.notas-finais ol li:last-child {
+  border-bottom: none;
+}
+
+.notas-finais ol li::before {
+  content: counter(nota) ".";
+  position: absolute;
+  left: 0;
+  color: var(--cor-primaria);
+  font-weight: 700;
+  font-family: var(--fonte-titulo);
+}
+
+/* ============= FOOTER ============= */
+footer {
+  text-align: center;
+  padding: 32px 24px;
+  font-size: var(--texto-pequeno);
+  color: var(--texto-apoio);
+  letter-spacing: 0.04em;
+  line-height: 1.8;
+  border-top: 1px solid var(--borda-fraca);
+  margin-top: 16px;
+}
+
+/* ============= PRINT ============= */
+@media print {
+  :root,
+  :root[data-tema="escuro"] {
+    --bg: #F7F0E8;
+    --bg-cartao: #FAF5EF;
+    --bg-alt: #F0E7DC;
+    --bg-destaque: #E8DDD2;
+    --texto-primario: #1A120E;
+    --texto-secundario: #2D1F16;
+    --texto-corpo: #3D2B1F;
+    --texto-terciario: #5A3F2E;
+    --texto-apoio: #8B7A6B;
+    --borda: #D4C8BC;
+    --borda-fraca: rgba(212, 200, 188, 0.3);
+    --sombra-cartao: none;
+    --sombra-sutil: none;
+    --sombra-media: none;
+    --sombra-forte: none;
+  }
+
+  body {
+    background: var(--bg);
+    font-size: 11pt;
+  }
+
+  .secao {
+    box-shadow: none;
+    border: 1px solid var(--borda);
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-bottom: 32px;
+  }
+
+  .secao:hover {
+    box-shadow: none;
+  }
+
+  .indice {
+    box-shadow: none;
+    border: 1px solid var(--borda);
+  }
+
+  .voltar-topo,
+  .alterna-tema,
+  .acoes-flutuantes {
+    display: none !important;
+  }
+
+  .header-ornament::before,
+  .header-ornament::after {
+    display: none;
+  }
+
+  .header-ornament {
+    padding: 32px 24px 24px;
+    background: var(--marrom-escuro) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .secao-header {
+    background: var(--marrom-escuro) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .oracao-comum {
+    background: var(--marrom-escuro) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .oracao-comum p {
+    color: rgba(255, 255, 255, 0.9) !important;
+  }
+
+  .oracao-comum .rotulo {
+    color: var(--cor-primaria-hover) !important;
+  }
+
+  .cross-symbol {
+    color: var(--cor-primaria-hover) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .divisor-ornamental span {
+    background: var(--cor-primaria) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .divisor-ornamental .losango {
+    color: var(--cor-primaria) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .secao-numero {
+    color: var(--cor-primaria) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .intencao-item .letra {
+    background: var(--cor-primaria) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .container {
+    padding: 24px 16px 40px;
+    max-width: 100%;
+  }
+}
+
+/* ============= MELHORIAS ADICIONAIS ============= */
+
+/* Efeito de transição suave para o índice */
+.indice-item {
+  transition: border-color var(--transicao-rapida), 
+              background-color var(--transicao-rapida),
+              transform var(--transicao-rapida);
+}
+
+@media (hover: hover) {
+  .indice-item:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* Melhorias para telas muito pequenas */
+@media (max-width: 360px) {
+  .header-ornament h1 {
+    font-size: 1.8rem;
+  }
+
+  .secao-titulo {
+    font-size: 1rem;
+  }
+
+  .secao-numero {
+    font-size: 1.8rem;
+    min-width: 30px;
+  }
+
+  .reflexao-bloco blockquote {
+    font-size: 0.9rem;
+  }
+
+  .intencao-item p {
+    font-size: 0.9rem;
+  }
+
+  .oracao-comum p {
+    font-size: 0.9rem;
+  }
+}
+
+/* Suporte para preferência de contraste */
+@media (prefers-contrast: high) {
+  :root {
+    --borda-fraca: rgba(45, 31, 22, 0.4);
+    --sombra-cartao: none;
+    --sombra-sutil: none;
+    --sombra-media: none;
+    --sombra-forte: none;
+  }
+
+  .secao {
+    border-width: 2px;
+  }
+
+  .indice {
+    border-width: 2px;
+  }
+
+  .reflexao-bloco blockquote {
+    border-left-width: 4px;
+  }
+
+  .intencao-item {
+    border-left-width: 4px;
+  }
+}
+
+/* Suporte para modo de alto contraste do Windows */
+@media (forced-colors: active) {
+  .secao {
+    border: 2px solid CanvasText;
+  }
+
+  .indice {
+    border: 2px solid CanvasText;
+  }
+
+  .secao-header {
+    background: CanvasText !important;
+    color: Canvas !important;
+  }
+
+  .secao-header * {
+    color: Canvas !important;
+  }
+
+  .oracao-comum {
+    background: CanvasText !important;
+  }
+
+  .oracao-comum * {
+    color: Canvas !important;
+  }
+
+  .intencao-item .letra {
+    background: CanvasText !important;
+    color: Canvas !important;
+  }
+
+  .reflexao-bloco blockquote {
+    border-left-color: CanvasText;
+  }
+
+  .intencao-item {
+    border-left-color: CanvasText;
+  }
+
+  .secao-numero {
+    color: CanvasText !important;
+  }
+
+  .cross-symbol {
+    color: CanvasText !important;
+  }
+}
+
+/* ============= MENU DE NAVEGAÇÃO ============= */
+.menu-navegacao {
+  background: var(--bg-cartao);
+  border: 1px solid var(--borda);
+  border-radius: var(--border-radius-padrao);
+  padding: 12px 20px;
+  margin-bottom: 32px;
+  box-shadow: var(--sombra-sutil);
+}
+
+.menu-lista {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.menu-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  font-family: var(--fonte-corpo);
+  font-size: var(--texto-pequeno);
+  font-weight: 600;
+  color: var(--texto-terciario);
+  text-decoration: none;
+  border-radius: 24px;
+  transition: background-color var(--transicao-rapida),
+              color var(--transicao-rapida),
+              transform var(--transicao-rapida),
+              box-shadow var(--transicao-rapida);
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.menu-link:hover {
+  background: var(--bg-alt);
+  color: var(--texto-secundario);
+  transform: translateY(-1px);
+}
+
+.menu-link:active {
+  transform: scale(0.97);
+}
+
+.menu-link.ativo {
+  background: var(--bg-secao-header);
+  color: var(--off-white);
+  border-color: var(--borda-ouro);
+  box-shadow: var(--sombra-media);
+}
+
+.menu-link.ativo:hover {
+  background: var(--bg-secao-header);
+  color: var(--off-white);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 480px) {
+  .menu-navegacao {
+    padding: 10px 14px;
+    margin-bottom: 24px;
+  }
+
+  .menu-link {
+    font-size: var(--texto-muito-pequeno);
+    padding: 8px 14px;
+    gap: 6px;
+  }
+
+  .menu-link span.icone-menu {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .menu-lista {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .menu-link {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<div class="header-ornament">
+  <span class="cross-symbol">+</span>
+  <h1>Novena do Trabalho</h1>
+  <p class="subtitulo">Sob a intercessão de São Josemaria Escrivá</p>
+  <div class="divisor-ornamental">
+    <span></span>
+    <span class="losango">◆ ◆ ◆</span>
+    <span></span>
+  </div>
+</div>
+
+<div class="container">
+
+    <!-- ============= MENU DE NAVEGAÇÃO ============= -->
+  <nav class="menu-navegacao" aria-label="Menu principal">
+    <ul class="menu-lista">
+      <li><a href="/exame-confissao/exame-confissao/index.html" class="menu-link">Exame de Consciência</a></li>
+      <li><a href="josemariaescriva.html" class="menu-link ativo">Novena do Trabalho</a></li>
+    </ul>
+  </nav>
+
+  <div class="oracao-intro">
+    <p>
+      Reze esta novena pedindo a intercessão de São Josemaria Escrivá — seja para conseguir um emprego, seja para desempenhar com excelência e amor a profissão que já exerce. Cada dia traz uma reflexão, intenções específicas e a oração final ao santo.
+    </p>
+    <span class="atribuicao">Como usar esta novena</span>
+  </div>
+
+  <!-- ÍNDICE -->
+  <div class="indice">
+    <h3>Os Nove Dias</h3>
+    <div class="indice-grid">
+      <div class="indice-item"><strong>1</strong>Trabalho, caminho e santidade</div>
+      <div class="indice-item"><strong>2</strong>Trabalhar por amor a Deus</div>
+      <div class="indice-item"><strong>3</strong>Ordem e constância</div>
+      <div class="indice-item"><strong>4</strong>Trabalho bem acabado</div>
+      <div class="indice-item"><strong>5</strong>Todo trabalho é digno</div>
+      <div class="indice-item"><strong>6</strong>Na companhia de Deus</div>
+      <div class="indice-item"><strong>7</strong>Amadurecer nas virtudes</div>
+      <div class="indice-item"><strong>8</strong>Trabalhar é servir</div>
+      <div class="indice-item"><strong>9</strong>Apostolado no trabalho</div>
+    </div>
+  </div>
+
+  <!-- DIA 1 -->
+  <div class="secao">
+    <div class="secao-header">
+      <span class="secao-numero">1</span>
+      <div class="secao-titulo-grupo">
+        <div class="secao-dia">Primeiro Dia</div>
+        <div class="secao-titulo">Trabalho, Caminho e Santidade</div>
+      </div>
+    </div>
+    <div class="secao-corpo">
+
+      <div class="reflexao-bloco">
+        <div class="rotulo">Reflexão — São Josemaria Escrivá</div>
+        <blockquote>"Viemos chamar de novo a atenção para o exemplo de Jesus, que, durante trinta anos, permaneceu em Nazaré trabalhando, desempenhando um ofício. Nas mãos de Jesus, o trabalho, e um trabalho profissional semelhante àquele que desenvolvem milhões de homens no mundo, converte-se em tarefa divina, em trabalho redentor, em caminho de salvação."<sup>1</sup></blockquote>
+        <blockquote>"Aí onde estão os nossos irmãos, os homens, aí onde estão as nossas aspirações, o nosso trabalho, os nossos amores, aí está o lugar do nosso encontro cotidiano com Cristo. Deus nos espera a cada dia no laboratório, na sala de operações de um hospital, no quartel, na cátedra universitária, na fábrica, na oficina, no campo, no seio do lar e em todo o imenso panorama do trabalho."<sup>2</sup></blockquote>
+      </div>
+
+      <div class="intencoes-bloco">
+        <div class="rotulo">Intenções</div>
+        <div class="intencao-toggle">
+          <span class="intencao-tag">A — Para encontrar trabalho</span>
+          <span class="intencao-tag">B — Para fazer um bom trabalho</span>
+        </div>
+
+        <div class="intencao-item">
+          <span class="letra">A</span><span class="legenda">Para encontrar trabalho</span>
+          <p>Para que Deus Nosso Senhor me oriente no esforço de procurar trabalho e me abençoe, fazendo-me conseguir um emprego honesto, digno e estável; e que me ajude, depois, a olhar para a minha tarefa profissional como um caminho de santificação e de serviço aos outros, onde o meu Pai Deus me espera a toda a hora e me pede que imite Jesus quando trabalhava como carpinteiro em Nazaré.</p>
+        </div>
+
+        <div class="intencao-item">
+          <span class="letra">B</span><span class="legenda">Para fazer um bom trabalho</span>
+          <p>Para que Deus Nosso Senhor me ajude a olhar para a minha tarefa profissional como um caminho de santificação e de serviço aos outros, onde Ele me espera a toda a hora, e me pede, em todas as circunstâncias, que imite Jesus quando trabalhava como carpinteiro em Nazaré.</p>
+        </div>
+      </div>
+
+      <div class="oracao-comum">
+        <div class="rotulo">Oração a São Josemaria</div>
+        <p>
+          Ó Deus, que por mediação da Santíssima Virgem Maria concedestes inumeráveis graças a São Josemaria, sacerdote, escolhendo-o como instrumento fidelíssimo para fundar o Opus Dei, caminho de santificação no trabalho profissional e no cumprimento dos deveres cotidianos do cristão, fazei com que eu saiba também converter todos os momentos, amar e servir com alegria e simplicidade a Igreja, o Romano Pontífice e as almas, iluminando os caminhos da Terra com o resplendor da fé e do amor. Concedei-me por intercessão de São Josemaria o favor que vos peço. Assim seja.
+        </p>
+        <div class="pai-nosso">Pai Nosso · Ave-Maria · Glória</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DIA 2 -->
+  <div class="secao">
+    <div class="secao-header">
+      <span class="secao-numero">2</span>
+      <div class="secao-titulo-grupo">
+        <div class="secao-dia">Segundo Dia</div>
+        <div class="secao-titulo">Trabalhar por Amor a Deus</div>
+      </div>
+    </div>
+    <div class="secao-corpo">
+
+      <div class="reflexao-bloco">
+        <div class="rotulo">Reflexão — São Josemaria Escrivá</div>
+        <blockquote>"A dignidade do trabalho se baseia no Amor. O grande privilégio do homem é poder amar, transcendendo assim o efêmero e transitório."<sup>3</sup></blockquote>
+        <blockquote>"Fazei tudo por amor. Assim não há coisas pequenas: tudo é grande. A perseverança nas pequenas coisas por amor é heroísmo."<sup>4</sup></blockquote>
+        <blockquote>"Na simplicidade do teu trabalho habitual, nos detalhes monótonos de cada dia, tens que descobrir o segredo — para tantos escondido — da grandeza e da novidade: o Amor."<sup>5</sup></blockquote>
+      </div>
+
+      <div class="intencoes-bloco">
+        <div class="rotulo">Intenções</div>
+        <div class="intencao-toggle">
+          <span class="intencao-tag">A — Para encontrar trabalho</span>
+          <span class="intencao-tag">B — Para fazer um bom trabalho</span>
+        </div>
+
+        <div class="intencao-item">
+          <span class="letra">A</span><span class="legenda">Para encontrar trabalho</span>
+          <p>Para que Deus me conceda a graça de conseguir logo um trabalho que proporcione segurança à minha família. E para que, ao mesmo tempo, Ele me ajude a compreender que o que dá valor a qualquer trabalho honesto é o amor com que o fazemos: em primeiro lugar, amor a Deus, a quem oferecemos o trabalho; e amor ao próximo, a quem queremos servir e ser úteis.</p>
+        </div>
+
+        <div class="intencao-item">
+          <span class="letra">B</span><span class="legenda">Para fazer um bom trabalho</span>
+          <p>Para que Deus me ajude a compreender que o que dá valor a qualquer trabalho honesto é o amor com que o fazemos: em primeiro lugar, amor a Deus, a quem oferecemos o trabalho; e amor ao próximo, a quem queremos servir e ser úteis.</p>
+        </div>
+      </div>
+
+      <div class="oracao-comum">
+        <div class="rotulo">Oração a São Josemaria</div>
+        <p>
+          Ó Deus, que por mediação da Santíssima Virgem Maria concedestes inumeráveis graças a São Josemaria, sacerdote, escolhendo-o como instrumento fidelíssimo para fundar o Opus Dei, caminho de santificação no trabalho profissional e no cumprimento dos deveres cotidianos do cristão, fazei com que eu saiba também converter todos os momentos, amar e servir com alegria e simplicidade a Igreja, o Romano Pontífice e as almas, iluminando os caminhos da Terra com o resplendor da fé e do amor. Concedei-me por intercessão de São Josemaria o favor que vos peço. Assim seja.
+        </p>
+        <div class="pai-nosso">Pai Nosso · Ave-Maria · Glória</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DIA 3 -->
+  <div class="secao">
+    <div class="secao-header">
+      <span class="secao-numero">3</span>
+      <div class="secao-titulo-grupo">
+        <div class="secao-dia">Terceiro Dia</div>
+        <div class="secao-titulo">Ordem e Constância</div>
+      </div>
+    </div>
+    <div class="secao-corpo">
+
+      <div class="reflexao-bloco">
+        <div class="rotulo">Reflexão — São Josemaria Escrivá</div>
+        <blockquote>"Como é breve a duração da nossa passagem pela Terra! Verdadeiramente é curto o nosso tempo para amar, para dar, para desagravar. Não é justo, portanto, que o malbaratemos. Não podemos desperdiçar esta etapa do mundo que Deus confia a cada um de nós."<sup>6</sup></blockquote>
+        <blockquote>"Quando tiveres ordem, multiplicar-se-á o teu tempo e, portanto, poderás dar mais glória a Deus, trabalhando mais a seu serviço."<sup>7</sup></blockquote>
+      </div>
+
+      <div class="intencoes-bloco">
+        <div class="rotulo">Intenções</div>
+        <div class="intencao-toggle">
+          <span class="intencao-tag">A — Para encontrar trabalho</span>
+          <span class="intencao-tag">B — Para fazer um bom trabalho</span>
+        </div>
+
+        <div class="intencao-item">
+          <span class="letra">A</span><span class="legenda">Para encontrar trabalho</span>
+          <p>Para que com o auxílio de Maria Santíssima eu consiga um trabalho estável e apropriado. E que quando — por bondade de Deus — já estiver trabalhando, eu saiba aproveitar o tempo como um tesouro que é; e me esmere em aprimorar a virtude da ordem, de modo que consiga fazer tudo com pontualidade, intensidade e constância, sem confusões nem atrasos, seguindo um plano bem estruturado, que me permita dedicar de modo equilibrado os horários convenientes a cada um dos meus deveres: vida espiritual, família, profissão e relações sociais.</p>
+        </div>
+
+        <div class="intencao-item">
+          <span class="letra">B</span><span class="legenda">Para fazer um bom trabalho</span>
+          <p>Para que com o auxílio de Maria Santíssima eu saiba aproveitar o tempo como um tesouro que é; e que me esmere em aprimorar a virtude da ordem de modo que consiga fazer tudo com pontualidade, intensidade e constância, sem confusões nem atrasos, seguindo um plano bem estruturado, que me permita dedicar de modo equilibrado os horários convenientes a cada um dos meus deveres: vida espiritual, profissão e relações sociais.</p>
+        </div>
+      </div>
+
+      <div class="oracao-comum">
+        <div class="rotulo">Oração a São Josemaria</div>
+        <p>
+          Ó Deus, que por mediação da Santíssima Virgem Maria concedestes inumeráveis graças a São Josemaria, sacerdote, escolhendo-o como instrumento fidelíssimo para fundar o Opus Dei, caminho de santificação no trabalho profissional e no cumprimento dos deveres cotidianos do cristão, fazei com que eu saiba também converter todos os momentos, amar e servir com alegria e simplicidade a Igreja, o Romano Pontífice e as almas, iluminando os caminhos da Terra com o resplendor da fé e do amor. Concedei-me por intercessão de São Josemaria o favor que vos peço. Assim seja.
+        </p>
+        <div class="pai-nosso">Pai Nosso · Ave-Maria · Glória</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DIA 4 -->
+  <div class="secao">
+    <div class="secao-header">
+      <span class="secao-numero">4</span>
+      <div class="secao-titulo-grupo">
+        <div class="secao-dia">Quarto Dia</div>
+        <div class="secao-titulo">Trabalho Bem Acabado</div>
+      </div>
+    </div>
+    <div class="secao-corpo">
+
+      <div class="reflexao-bloco">
+        <div class="rotulo">Reflexão — São Josemaria Escrivá</div>
+        <blockquote>"Não podemos oferecer ao Senhor uma coisa que, dentro das pobres limitações humanas, não seja perfeita, sem mancha, realizada com atenção até nos mínimos detalhes. Deus não aceita trabalhos 'marretados'. Por isso o trabalho de cada qual — essa atividade que ocupa as nossas jornadas e energias — há de ser uma oferenda digna aos olhos do Criador; numa palavra, uma tarefa acabada, impecável."<sup>8</sup></blockquote>
+        <blockquote>"Antes de mais, devemos amar a Santa Missa, que tem de ser o centro do nosso dia. Se a vivermos bem, como não havemos de continuar depois com o pensamento no Senhor, para trabalhar como Ele trabalhava e amar como Ele amava?"<sup>9</sup></blockquote>
+      </div>
+
+      <div class="intencoes-bloco">
+        <div class="rotulo">Intenções</div>
+        <div class="intencao-toggle">
+          <span class="intencao-tag">A — Para encontrar trabalho</span>
+          <span class="intencao-tag">B — Para fazer um bom trabalho</span>
+        </div>
+
+        <div class="intencao-item">
+          <span class="letra">A</span><span class="legenda">Para encontrar trabalho</span>
+          <p>Para que, com o auxílio de Nossa Senhora, não demore a resolver-se o problema do meu desemprego. E para que, ao iniciar o novo trabalho, Deus me ajude a colocar todo o empenho em realizá-lo com categoria, com a maior perfeição possível, sem fazer as tarefas de qualquer maneira — convencido de que um trabalho mal feito não pode ser santificado por lhe faltar amor, que é a condição imprescindível para que qualquer atividade humana possa ser agradável a Deus.</p>
+        </div>
+
+        <div class="intencao-item">
+          <span class="letra">B</span><span class="legenda">Para fazer um bom trabalho</span>
+          <p>Para que Deus me ajude a colocar todo o empenho em realizar o meu trabalho com categoria, com a maior perfeição possível, sem fazer as tarefas de qualquer maneira — convencido de que um trabalho mal feito não pode ser santificado por lhe faltar amor, que é a condição imprescindível para que qualquer atividade humana possa ser agradável a Deus.</p>
+        </div>
+      </div>
+
+      <div class="oracao-comum">
+        <div class="rotulo">Oração a São Josemaria</div>
+        <p>
+          Ó Deus, que por mediação da Santíssima Virgem Maria concedestes inumeráveis graças a São Josemaria, sacerdote, escolhendo-o como instrumento fidelíssimo para fundar o Opus Dei, caminho de santificação no trabalho profissional e no cumprimento dos deveres cotidianos do cristão, fazei com que eu saiba também converter todos os momentos, amar e servir com alegria e simplicidade a Igreja, o Romano Pontífice e as almas, iluminando os caminhos da Terra com o resplendor da fé e do amor. Concedei-me por intercessão de São Josemaria o favor que vos peço. Assim seja.
+        </p>
+        <div class="pai-nosso">Pai Nosso · Ave-Maria · Glória</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DIA 5 -->
+  <div class="secao">
+    <div class="secao-header">
+      <span class="secao-numero">5</span>
+      <div class="secao-titulo-grupo">
+        <div class="secao-dia">Quinto Dia</div>
+        <div class="secao-titulo">Todos os Trabalhos Honestos São Dignos</div>
+      </div>
+    </div>
+    <div class="secao-corpo">
+
+      <div class="reflexao-bloco">
+        <div class="rotulo">Reflexão — São Josemaria Escrivá</div>
+        <blockquote>"É hora de que todos nós, cristãos, anunciemos bem alto que o trabalho é um dom de Deus, e que não faz nenhum sentido dividir os homens em diferentes categorias, conforme os tipos de trabalho, considerando umas ocupações mais nobres do que as outras. O trabalho, todo trabalho, é testemunho da dignidade do homem."<sup>10</sup></blockquote>
+        <blockquote>"Diante de Deus, nenhuma ocupação é em si grande ou pequena. Tudo adquire o valor do Amor com que se realiza."<sup>11</sup></blockquote>
+      </div>
+
+      <div class="intencoes-bloco">
+        <div class="rotulo">Intenções</div>
+        <div class="intencao-toggle">
+          <span class="intencao-tag">A — Para encontrar trabalho</span>
+          <span class="intencao-tag">B — Para fazer um bom trabalho</span>
+        </div>
+
+        <div class="intencao-item">
+          <span class="letra">A</span><span class="legenda">Para encontrar trabalho</span>
+          <p>Para que Deus me conceda a alegria de conseguir um trabalho, uma tarefa em que eu possa ser útil e desenvolver as minhas capacidades. E que, se no momento esse trabalho estiver abaixo do meu preparo e das minhas legítimas aspirações, eu não o despreze, mas — enquanto não achar um trabalho mais apropriado — o realize com toda a responsabilidade, fazendo com que tenha a categoria do trabalho que Jesus realizou na oficina de Nazaré.</p>
+        </div>
+
+        <div class="intencao-item">
+          <span class="letra">B</span><span class="legenda">Para fazer um bom trabalho</span>
+          <p>Para que atualmente, se o meu trabalho está abaixo do meu preparo e das minhas legítimas aspirações, Deus me ajude a não desprezá-lo, mas — enquanto não achar um trabalho mais apropriado — a realizá-lo com toda a responsabilidade, fazendo com que tenha a categoria do trabalho que Jesus realizou na oficina de Nazaré.</p>
+        </div>
+      </div>
+
+      <div class="oracao-comum">
+        <div class="rotulo">Oração a São Josemaria</div>
+        <p>
+          Ó Deus, que por mediação da Santíssima Virgem Maria concedestes inumeráveis graças a São Josemaria, sacerdote, escolhendo-o como instrumento fidelíssimo para fundar o Opus Dei, caminho de santificação no trabalho profissional e no cumprimento dos deveres cotidianos do cristão, fazei com que eu saiba também converter todos os momentos, amar e servir com alegria e simplicidade a Igreja, o Romano Pontífice e as almas, iluminando os caminhos da Terra com o resplendor da fé e do amor. Concedei-me por intercessão de São Josemaria o favor que vos peço. Assim seja.
+        </p>
+        <div class="pai-nosso">Pai Nosso · Ave-Maria · Glória</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DIA 6 -->
+  <div class="secao">
+    <div class="secao-header">
+      <span class="secao-numero">6</span>
+      <div class="secao-titulo-grupo">
+        <div class="secao-dia">Sexto Dia</div>
+        <div class="secao-titulo">Trabalhar na Companhia de Deus e com Reta Intenção</div>
+      </div>
+    </div>
+    <div class="secao-corpo">
+
+      <div class="reflexao-bloco">
+        <div class="rotulo">Reflexão — São Josemaria Escrivá</div>
+        <blockquote>"Deves manter ao longo do dia uma constante conversa com o Senhor, que se alimente também das próprias incidências da tua tarefa profissional."<sup>12</sup></blockquote>
+        <blockquote>"Como cristão, deverias trazer sempre contigo o teu crucifixo e colocá-lo sobre a tua mesa de trabalho. E beijá-lo antes de te entregares ao descanso e ao acordar."<sup>13</sup></blockquote>
+        <blockquote>"Coloca na tua mesa de trabalho, no teu quarto, na tua carteira uma imagem de Nossa Senhora, e dirige-lhe o olhar ao começares a tua tarefa, enquanto a realizas e ao terminá-la. Ela te alcançará — garanto! — a força necessária para fazeres da tua ocupação um diálogo amoroso com Deus."<sup>14</sup></blockquote>
+      </div>
+
+      <div class="intencoes-bloco">
+        <div class="rotulo">Intenções</div>
+        <div class="intencao-toggle">
+          <span class="intencao-tag">A — Para encontrar trabalho</span>
+          <span class="intencao-tag">B — Para fazer um bom trabalho</span>
+        </div>
+
+        <div class="intencao-item">
+          <span class="letra">A</span><span class="legenda">Para encontrar trabalho</span>
+          <p>Para que Deus me conceda um emprego honesto e digno, e me abra os olhos da alma para compreender que Ele está sempre ao meu lado. Que, para não perder de vista esta maravilhosa realidade, eu me esforce em ter a presença de Deus durante o trabalho, servindo-me discretamente — como de um "lembrete" — de um pequeno crucifixo, de uma estampa de Nossa Senhora, da efígie de outro santo da minha devoção; "lembretes" colocados onde eu os possa ver com frequência, sem exibicionismo nem alarde.</p>
+        </div>
+
+        <div class="intencao-item">
+          <span class="letra">B</span><span class="legenda">Para fazer um bom trabalho</span>
+          <p>Para que Deus me faça compreender que Ele está sempre ao meu lado, enquanto estou trabalhando. E que, para não perder de vista esta maravilhosa realidade, eu me esforce em ter a presença de Deus durante o trabalho, servindo-me discretamente — como de um "lembrete" — de um pequeno crucifixo, de uma estampa de Nossa Senhora, da efígie de outro santo da minha devoção; "lembretes" colocados onde eu os possa ver com frequência, sem exibicionismo nem alarde.</p>
+        </div>
+      </div>
+
+      <div class="nota-extra">Uma outra forma de manter-se próximo a Deus durante o dia são as jaculatórias — pequenas orações breves repetidas ao longo da jornada.</div>
+
+      <div class="oracao-comum" style="margin-top: 22px;">
+        <div class="rotulo">Oração a São Josemaria</div>
+        <p>
+          Ó Deus, que por mediação da Santíssima Virgem Maria concedestes inumeráveis graças a São Josemaria, sacerdote, escolhendo-o como instrumento fidelíssimo para fundar o Opus Dei, caminho de santificação no trabalho profissional e no cumprimento dos deveres cotidianos do cristão, fazei com que eu saiba também converter todos os momentos, amar e servir com alegria e simplicidade a Igreja, o Romano Pontífice e as almas, iluminando os caminhos da Terra com o resplendor da fé e do amor. Concedei-me por intercessão de São Josemaria o favor que vos peço. Assim seja.
+        </p>
+        <div class="pai-nosso">Pai Nosso · Ave-Maria · Glória</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DIA 7 -->
+  <div class="secao">
+    <div class="secao-header">
+      <span class="secao-numero">7</span>
+      <div class="secao-titulo-grupo">
+        <div class="secao-dia">Sétimo Dia</div>
+        <div class="secao-titulo">Amadurecer nas Virtudes Através do Trabalho</div>
+      </div>
+    </div>
+    <div class="secao-corpo">
+
+      <div class="reflexao-bloco">
+        <div class="rotulo">Reflexão — São Josemaria Escrivá</div>
+        <blockquote>"Tudo aquilo em que intervimos os pobrezinhos dos homens — mesmo a santidade — é um tecido de pequenas insignificâncias que, conforme a intenção com que se fazem, podem formar uma tapeçaria esplêndida de heroísmo ou de baixeza, de virtudes ou de pecados."<sup>15</sup></blockquote>
+        <blockquote>"É toda uma trama de virtudes que se põe em jogo quando exercemos o nosso ofício com o propósito de santificá-lo: a fortaleza, para perseverarmos no trabalho, apesar das naturais dificuldades; a temperança, para superarmos o comodismo e o egoísmo; a justiça, para cumprirmos os nossos deveres para com Deus, para com a sociedade, para com a família, para com os colegas; a prudência, para sabermos em cada caso o que convém fazer e nos lançarmos à obra sem dilações. E tudo por Amor."<sup>16</sup></blockquote>
+      </div>
+
+      <div class="intencoes-bloco">
+        <div class="rotulo">Intenções</div>
+        <div class="intencao-toggle">
+          <span class="intencao-tag">A — Para encontrar trabalho</span>
+          <span class="intencao-tag">B — Para fazer um bom trabalho</span>
+        </div>
+
+        <div class="intencao-item">
+          <span class="letra">A</span><span class="legenda">Para encontrar trabalho</span>
+          <p>Para que, com a ajuda de Nossa Senhora, eu ache o trabalho que venho procurando. E que, ao meter-me em cheio nesse novo trabalho, Deus me ajude a desenvolver por meio dele as virtudes cristãs e a amadurecer espiritualmente. Que eu procure ser paciente e compreensiva, tanto com os chefes quanto com os colegas e subordinados; que eu seja simples e humilde, fugindo da vaidade e do exibicionismo; que eu faça tudo, em suma, com pureza de coração.</p>
+        </div>
+
+        <div class="intencao-item">
+          <span class="letra">B</span><span class="legenda">Para fazer um bom trabalho</span>
+          <p>Para que Deus me ajude a desenvolver por meio do trabalho as virtudes cristãs e a amadurecer espiritualmente. Que eu procure ser paciente e compreensiva, tanto com os chefes quanto com os colegas e subordinados; que eu seja simples e humilde, fugindo da vaidade e do exibicionismo; que eu faça tudo, em suma, com pureza de coração.</p>
+        </div>
+      </div>
+
+      <div class="oracao-comum">
+        <div class="rotulo">Oração a São Josemaria</div>
+        <p>
+          Ó Deus, que por mediação da Santíssima Virgem Maria concedestes inumeráveis graças a São Josemaria, sacerdote, escolhendo-o como instrumento fidelíssimo para fundar o Opus Dei, caminho de santificação no trabalho profissional e no cumprimento dos deveres cotidianos do cristão, fazei com que eu saiba também converter todos os momentos, amar e servir com alegria e simplicidade a Igreja, o Romano Pontífice e as almas, iluminando os caminhos da Terra com o resplendor da fé e do amor. Concedei-me por intercessão de São Josemaria o favor que vos peço. Assim seja.
+        </p>
+        <div class="pai-nosso">Pai Nosso · Ave-Maria · Glória</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DIA 8 -->
+  <div class="secao">
+    <div class="secao-header">
+      <span class="secao-numero">8</span>
+      <div class="secao-titulo-grupo">
+        <div class="secao-dia">Oitavo Dia</div>
+        <div class="secao-titulo">Trabalhar é Servir, Ajudar os Outros</div>
+      </div>
+    </div>
+    <div class="secao-corpo">
+
+      <div class="reflexao-bloco">
+        <div class="rotulo">Reflexão — São Josemaria Escrivá</div>
+        <blockquote>"Pensai que através dos vossos afazeres profissionais, realizados com responsabilidade, além de vos sustentardes economicamente, prestais um serviço diretíssimo ao desenvolvimento da sociedade, aliviais também as cargas dos outros e mantendes muitas obras assistenciais — em nível local e universal — em prol dos indivíduos e dos povos menos favorecidos."<sup>17</sup></blockquote>
+        <blockquote>"Quando tiveres terminado o teu trabalho, faz o do teu irmão, ajudando-o, por Cristo, com tal delicadeza e naturalidade, que nem mesmo o favorecido repare que estás fazendo mais do que em justiça deves. Isto, sim, é fina virtude de filho de Deus!"<sup>18</sup></blockquote>
+      </div>
+
+      <div class="intencoes-bloco">
+        <div class="rotulo">Intenções</div>
+        <div class="intencao-toggle">
+          <span class="intencao-tag">A — Para encontrar trabalho</span>
+          <span class="intencao-tag">B — Para fazer um bom trabalho</span>
+        </div>
+
+        <div class="intencao-item">
+          <span class="letra">A</span><span class="legenda">Para encontrar trabalho</span>
+          <p>Para que Deus Nosso Senhor me conceda o trabalho que lhe peço com tanta fé. E para que infunda na minha alma o desejo de fazer do meu trabalho não uma atividade egoísta, fechada nos meus interesses, mas um serviço aberto ao bem e à utilidade de muitos, realizado com a certeza de que esse ideal de serviço aos outros dará um novo sentido, mais elevado e alegre, à minha vida.</p>
+        </div>
+
+        <div class="intencao-item">
+          <span class="letra">B</span><span class="legenda">Para fazer um bom trabalho</span>
+          <p>Para que Deus infunda na minha alma o desejo de fazer do meu trabalho não uma atividade egoísta, fechada nos meus interesses, mas um serviço aberto ao bem e à utilidade de muitos, realizado com a certeza de que esse ideal de serviço aos outros dará um novo sentido, mais elevado e alegre, à minha vida.</p>
+        </div>
+      </div>
+
+      <div class="oracao-comum">
+        <div class="rotulo">Oração a São Josemaria</div>
+        <p>
+          Ó Deus, que por mediação da Santíssima Virgem Maria concedestes inumeráveis graças a São Josemaria, sacerdote, escolhendo-o como instrumento fidelíssimo para fundar o Opus Dei, caminho de santificação no trabalho profissional e no cumprimento dos deveres cotidianos do cristão, fazei com que eu saiba também converter todos os momentos, amar e servir com alegria e simplicidade a Igreja, o Romano Pontífice e as almas, iluminando os caminhos da Terra com o resplendor da fé e do amor. Concedei-me por intercessão de São Josemaria o favor que vos peço. Assim seja.
+        </p>
+        <div class="pai-nosso">Pai Nosso · Ave-Maria · Glória</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DIA 9 -->
+  <div class="secao">
+    <div class="secao-header">
+      <span class="secao-numero">9</span>
+      <div class="secao-titulo-grupo">
+        <div class="secao-dia">Nono Dia</div>
+        <div class="secao-titulo">Fazer Apostolado com o Nosso Trabalho</div>
+      </div>
+    </div>
+    <div class="secao-corpo">
+
+      <div class="reflexao-bloco">
+        <div class="rotulo">Reflexão — São Josemaria Escrivá</div>
+        <blockquote>"O trabalho profissional é também apostolado, ocasião de entrega aos outros homens; o momento de lhes revelar Cristo e levá-los a Deus Pai."<sup>19</sup></blockquote>
+        <blockquote>"Faze a tua vida normal; trabalha onde estás, procurando cumprir os deveres do teu estado, acabar bem as tarefas da tua profissão ou do teu ofício, superando-te, melhorando dia a dia. Sê leal, compreensivo com os outros e exigente contigo mesmo. Sê mortificado e alegre. Esse será o teu apostolado. E, sem saberes por quê, dada a tua pobre miséria, os que te rodeiam virão ter contigo e, numa conversa natural, simples — à saída do trabalho, numa reunião familiar, no ônibus, ao dar um passeio em qualquer parte — falareis de inquietações que existem na alma de todos, embora às vezes alguns não as queiram reconhecer: irão entendendo-as melhor quando começarem a procurar Deus a sério."<sup>20</sup></blockquote>
+      </div>
+
+      <div class="intencoes-bloco">
+        <div class="rotulo">Intenções</div>
+        <div class="intencao-toggle">
+          <span class="intencao-tag">A — Para encontrar trabalho</span>
+          <span class="intencao-tag">B — Para fazer um bom trabalho</span>
+        </div>
+
+        <div class="intencao-item">
+          <span class="letra">A</span><span class="legenda">Para encontrar trabalho</span>
+          <p>Para que Deus, por mediação de Nossa Senhora, me faça encontrar um bom trabalho, no qual eu possa crescer profissionalmente e dar o melhor de mim mesma. E que me ajude a ver, no meu ambiente profissional, um campo aberto para a realização da missão apostólica que Deus confia a todos os batizados, aproveitando as oportunidades que Ele me dá para ajudar colegas, amigos, colaboradores, clientes, a descobrirem as maravilhas da fé cristã.</p>
+        </div>
+
+        <div class="intencao-item">
+          <span class="letra">B</span><span class="legenda">Para fazer um bom trabalho</span>
+          <p>Para que Deus me ajude a ver, no meu ambiente de trabalho, um campo aberto para a realização da missão apostólica que Deus confia a todos os batizados, aproveitando as oportunidades que Ele me dá para ajudar colegas, amigos, colaboradores, clientes, a descobrirem as maravilhas da fé cristã.</p>
+        </div>
+      </div>
+
+      <div class="oracao-comum">
+        <div class="rotulo">Oração a São Josemaria</div>
+        <p>
+          Ó Deus, que por mediação da Santíssima Virgem Maria concedestes inumeráveis graças a São Josemaria, sacerdote, escolhendo-o como instrumento fidelíssimo para fundar o Opus Dei, caminho de santificação no trabalho profissional e no cumprimento dos deveres cotidianos do cristão, fazei com que eu saiba também converter todos os momentos, amar e servir com alegria e simplicidade a Igreja, o Romano Pontífice e as almas, iluminando os caminhos da Terra com o resplendor da fé e do amor. Concedei-me por intercessão de São Josemaria o favor que vos peço. Assim seja.
+        </p>
+        <div class="pai-nosso">Pai Nosso · Ave-Maria · Glória</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Notas finais -->
+  <div class="notas-finais">
+    <h3>Fontes das Citações</h3>
+    <ol>
+      <li>É Cristo que passa, 14</li>
+      <li>É Cristo que passa, 112</li>
+      <li>Amigos de Deus, 65</li>
+      <li>Caminho, 813</li>
+      <li>É Cristo que passa, 50</li>
+      <li>Amigos de Deus, 40</li>
+      <li>Caminho, 80</li>
+      <li>Amigos de Deus, 55</li>
+      <li>É Cristo que passa, 152</li>
+      <li>Conversações com Mons. Escrivá, 55</li>
+      <li>Conversações com Mons. Escrivá, 10</li>
+      <li>Forja, 738</li>
+      <li>Sulco, 498</li>
+      <li>Caminho, 67</li>
+      <li>Sulco, 442</li>
+      <li>Amigos de Deus, 81</li>
+      <li>Amigos de Deus, 60</li>
+      <li>Conversações com Mons. Escrivá, 12</li>
+      <li>Caminho, 440</li>
+      <li>Conversações com Mons. Escrivá, 70</li>
+    </ol>
+  </div>
+
+</div>
+
+<footer>
+  + &nbsp; Sob a proteção de São José e a intercessão de São Josemaria Escrivá &nbsp; +
+</footer>
+
+<div class="acoes-flutuantes">
+<button class="alterna-tema" id="alternaTema" aria-label="Mudar para modo escuro" title="Alternar modo claro/escuro">
+  <span class="icone-tema" aria-hidden="true">🌙</span>
+</button>
+<button class="voltar-topo" id="voltarTopo" aria-label="Voltar ao topo" title="Voltar ao topo">↑</button>
+</div>
+
+<script>
+  (function () {
+    var raiz = document.documentElement;
+    var botaoTema = document.getElementById('alternaTema');
+    var iconeTema = botaoTema.querySelector('.icone-tema');
+    var CHAVE = 'novena-trabalho-tema';
+
+    function aplicarTema(tema) {
+      if (tema === 'escuro') {
+        raiz.setAttribute('data-tema', 'escuro');
+        iconeTema.textContent = '☀';
+        botaoTema.setAttribute('aria-label', 'Mudar para modo claro');
+      } else {
+        raiz.removeAttribute('data-tema');
+        iconeTema.textContent = '🌙';
+        botaoTema.setAttribute('aria-label', 'Mudar para modo escuro');
+      }
+    }
+
+    var salvo = null;
+    try { salvo = localStorage.getItem(CHAVE); } catch (e) {}
+
+    if (salvo === 'escuro' || salvo === 'claro') {
+      aplicarTema(salvo);
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      aplicarTema('escuro');
+    } else {
+      aplicarTema('claro');
+    }
+
+    botaoTema.addEventListener('click', function () {
+      var atual = raiz.getAttribute('data-tema') === 'escuro' ? 'escuro' : 'claro';
+      var novo = atual === 'escuro' ? 'claro' : 'escuro';
+      aplicarTema(novo);
+      try { localStorage.setItem(CHAVE, novo); } catch (e) {}
+    });
+  })();
+</script>
+
+<script>
+  (function () {
+    var botao = document.getElementById('voltarTopo');
+    var reduzMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 500) {
+        botao.classList.add('visivel');
+      } else {
+        botao.classList.remove('visivel');
+      }
+    });
+
+    botao.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: reduzMovimento ? 'auto' : 'smooth' });
+    });
+  })();
+</script>
+
+</body>
+</html>

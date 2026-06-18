@@ -1224,6 +1224,98 @@ footer {
   }
 }
 
+/* ============= MENU DE NAVEGAÇÃO ============= */
+.menu-navegacao {
+  background: var(--bg-cartao);
+  border: 1px solid var(--borda);
+  border-radius: var(--border-radius-padrao);
+  padding: 12px 20px;
+  margin-bottom: 32px;
+  box-shadow: var(--sombra-sutil);
+}
+
+.menu-lista {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.menu-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  font-family: var(--fonte-corpo);
+  font-size: var(--texto-pequeno);
+  font-weight: 600;
+  color: var(--texto-terciario);
+  text-decoration: none;
+  border-radius: 24px;
+  transition: background-color var(--transicao-rapida),
+              color var(--transicao-rapida),
+              transform var(--transicao-rapida),
+              box-shadow var(--transicao-rapida);
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.menu-link:hover {
+  background: var(--bg-alt);
+  color: var(--texto-secundario);
+  transform: translateY(-1px);
+}
+
+.menu-link:active {
+  transform: scale(0.97);
+}
+
+.menu-link.ativo {
+  background: var(--bg-secao-header);
+  color: var(--off-white);
+  border-color: var(--borda-ouro);
+  box-shadow: var(--sombra-media);
+}
+
+.menu-link.ativo:hover {
+  background: var(--bg-secao-header);
+  color: var(--off-white);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 480px) {
+  .menu-navegacao {
+    padding: 10px 14px;
+    margin-bottom: 24px;
+  }
+
+  .menu-link {
+    font-size: var(--texto-muito-pequeno);
+    padding: 8px 14px;
+    gap: 6px;
+  }
+
+  .menu-link span.icone-menu {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .menu-lista {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .menu-link {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 </style>
 
 
@@ -1242,6 +1334,13 @@ footer {
 </div>
 
 <div class="container">
+
+  <nav class="menu-navegacao" aria-label="Menu principal">
+    <ul class="menu-lista">
+      <li><a href="index.html" class="menu-link ativo">Exame de Consciência</a></li>
+      <li><a href="novenas/josemariaescriva.html" class="menu-link">Novena do Trabalho</a></li>
+    </ul>
+  </nav>
 
   <div class="oracao-intro">
     <p>
