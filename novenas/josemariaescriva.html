@@ -475,7 +475,7 @@ input:focus-visible {
 .indice-item {
   font-size: var(--texto-pequeno);
   color: var(--texto-terciario);
-  padding: 10px 12px;
+  padding: 12px 8px;
   background: var(--bg-alt);
   border-radius: var(--border-radius-pequeno);
   text-align: center;
@@ -647,10 +647,10 @@ input:focus-visible {
 .reflexao-bloco blockquote {
   font-family: var(--fonte-titulo);
   font-style: italic;
-  font-weight: 600; /* Aumentei de 500 para 600 */
-  font-size: 1.1rem; /* Aumentei de 1.08rem para 1.1rem */
+  font-weight: 600; 
+  font-size: 1.15rem;
   color: var(--texto-secundario);
-  line-height: 1.9; 
+  line-height: 2; 
   padding: 18px 22px; 
   border-left: 4px solid var(--cor-primaria); /* Aumentei a borda de 3px para 4px */
   margin-bottom: 16px;
@@ -747,9 +747,12 @@ input:focus-visible {
   font-weight: 600; 
   font-size: 1.15rem;
   color: var(--texto-corpo);
-  line-height: 1.9; 
+  line-height: 2; 
   margin-top: 10px;
   letter-spacing: 0.01em;
+  text-align: justify; 
+  text-justify: inter-word;
+  hyphens: auto; 
 }
 
 @media (max-width: 480px) {
@@ -788,8 +791,7 @@ input:focus-visible {
   font-size: 1.1rem;
   color: rgba(255, 255, 255, 0.9);
   line-height: 1.9;
-  text-align: justify;
-  text-justify: inter-word; 
+
   hyphens: auto; 
 }
 
@@ -1379,12 +1381,12 @@ footer {
   <nav class="nav-botoes" aria-label="Navegação principal">
     <ul class="nav-botoes-lista">
       <li>
-        <a href="/index.html" class="nav-botao ativo">
+        <a href="/index.html" class="nav-botao">
           <span class="nav-botao-texto">Exame de Consciência</span>
         </a>
       </li>
       <li>
-        <a href="josemariaescriva.html" class="nav-botao">
+        <a href="josemariaescriva.html" class="nav-botao ativo">
           <span class="nav-botao-texto">Novena do Trabalho</span>
         </a>
       </li>
