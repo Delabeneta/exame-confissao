@@ -1224,6 +1224,229 @@ footer {
   }
 }
 
+/* ============= MENU DE NAVEGAÇÃO ============= */
+/* ============= MENU DE NAVEGAÇÃO - BOTÕES DUPLOS ============= */
+
+.nav-botoes {
+  margin-bottom: 32px;
+}
+
+@media (max-width: 480px) {
+  .nav-botoes {
+    margin-bottom: 24px;
+  }
+}
+
+.nav-botoes-lista {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media (max-width: 480px) {
+  .nav-botoes-lista {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+/* ===== BOTÃO INDIVIDUAL ===== */
+.nav-botao {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 24px;
+  background: var(--bg-cartao);
+  border: 1px solid var(--borda);
+  border-radius: var(--border-radius-padrao);
+  font-family: var(--fonte-corpo);
+  font-size: var(--texto-pequeno);
+  font-weight: 500;
+  color: var(--texto-terciario);
+  text-decoration: none;
+  transition: all var(--transicao-rapida);
+  box-shadow: var(--sombra-sutil);
+  flex: 1;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 480px) {
+  .nav-botao {
+    padding: 12px 18px;
+    font-size: var(--texto-pequeno);
+    justify-content: flex-start;
+    gap: 10px;
+  }
+}
+
+/* Efeito de hover */
+.nav-botao:hover {
+  background: var(--bg-alt);
+  border-color: var(--borda-ouro);
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-media);
+}
+
+.nav-botao:active {
+  transform: translateY(0px) scale(0.98);
+}
+
+/* Estado ativo */
+.nav-botao.ativo {
+  background: var(--bg-secao-header);
+  border-color: var(--borda-ouro);
+  color: var(--off-white);
+  box-shadow: 0 4px 16px rgba(45, 31, 22, 0.15);
+}
+
+.nav-botao.ativo:hover {
+  background: var(--bg-secao-header);
+  border-color: var(--cor-primaria-hover);
+  box-shadow: 0 4px 20px rgba(45, 31, 22, 0.25);
+}
+
+/* Linha decorativa no botão ativo */
+.nav-botao.ativo::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+  right: 20%;
+  height: 3px;
+  background: var(--cor-primaria);
+  border-radius: 3px 3px 0 0;
+}
+
+@media (max-width: 480px) {
+  .nav-botao.ativo::before {
+    left: 12px;
+    right: 12px;
+  }
+}
+
+/* ===== ICONE ===== */
+.nav-botao-icone {
+  font-size: 1.2rem;
+  line-height: 1;
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+
+.nav-botao.ativo .nav-botao-icone {
+  opacity: 1;
+}
+
+@media (max-width: 480px) {
+  .nav-botao-icone {
+    font-size: 1.1rem;
+  }
+}
+
+/* ===== TEXTO ===== */
+.nav-botao-texto {
+  flex: 1;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 480px) {
+  .nav-botao-texto {
+    text-align: left;
+    font-weight: 500;
+  }
+}
+
+/* ===== BADGE ===== */
+.nav-botao-badge {
+  font-size: var(--texto-muito-pequeno);
+  font-weight: 700;
+  color: var(--texto-apoio);
+  background: var(--bg-alt);
+  padding: 3px 12px;
+  border-radius: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid var(--borda-fraca);
+  transition: all var(--transicao-rapida);
+  flex-shrink: 0;
+}
+
+.nav-botao.ativo .nav-botao-badge {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--cor-primaria-hover);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+@media (max-width: 480px) {
+  .nav-botao-badge {
+    font-size: 0.6rem;
+    padding: 2px 10px;
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 400px) {
+  .nav-botao-badge {
+    display: none;
+  }
+}
+
+/* ===== ANIMAÇÃO DE ENTRADA ===== */
+@keyframes fadeSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav-botoes {
+  animation: fadeSlideDown 0.4s ease-out;
+}
+
+/* ===== ACESSIBILIDADE ===== */
+.nav-botao:focus-visible {
+  outline: 3px solid var(--cor-primaria);
+  outline-offset: 3px;
+}
+
+/* ===== RESPONSIVIDADE ADICIONAL ===== */
+@media (min-width: 481px) and (max-width: 600px) {
+  .nav-botao {
+    padding: 12px 18px;
+    font-size: var(--texto-muito-pequeno);
+    gap: 8px;
+  }
+
+  .nav-botao-badge {
+    font-size: 0.55rem;
+    padding: 2px 8px;
+  }
+
+  .nav-botao-icone {
+    font-size: 1rem;
+  }
+}
+
+/* ===== SUPORTE PARA MODO ESCURO ===== */
+[data-tema="escuro"] .nav-botao.ativo {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+[data-tema="escuro"] .nav-botao.ativo:hover {
+  box-shadow: 0 4px 28px rgba(0, 0, 0, 0.5);
+}
+
 </style>
 
 
@@ -1242,6 +1465,22 @@ footer {
 </div>
 
 <div class="container">
+
+ <!-- ============= MENU DE NAVEGAÇÃO ============= -->
+   <nav class="nav-botoes" aria-label="Navegação principal">
+    <ul class="nav-botoes-lista">
+      <li>
+        <a href="index.html" class="nav-botao ativo">
+          <span class="nav-botao-texto">Exame de Consciência</span>
+        </a>
+      </li>
+      <li>
+        <a href="novenas/josemariaescriva.html" class="nav-botao">
+          <span class="nav-botao-texto">Novena do Trabalho</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
 
   <div class="oracao-intro">
     <p>
