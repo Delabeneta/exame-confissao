@@ -302,7 +302,6 @@ input:focus-visible {
 .oracao-intro p {
   font-family: var(--fonte-titulo);
   font-style: italic;
-  font-weight: 500;
   font-size: 1.15rem;
   color: var(--texto-secundario);
   line-height: 1.9;
@@ -310,7 +309,7 @@ input:focus-visible {
 
 @media (max-width: 480px) {
   .oracao-intro p {
-    font-size: 1.05rem;
+    font-size: 1.15rem;
   }
 }
 
@@ -648,23 +647,26 @@ input:focus-visible {
 .reflexao-bloco blockquote {
   font-family: var(--fonte-titulo);
   font-style: italic;
-  font-weight: 500;
-  font-size: 1.1rem;
+  font-weight: 600; /* Aumentei de 500 para 600 */
+  font-size: 1.1rem; /* Aumentei de 1.08rem para 1.1rem */
   color: var(--texto-secundario);
-  line-height: 1.85;
-  padding: 16px 18px;
-  border-left: 3px solid var(--borda-ouro);
-  margin-bottom: 14px;
+  line-height: 1.9; 
+  padding: 18px 22px; 
+  border-left: 4px solid var(--cor-primaria); /* Aumentei a borda de 3px para 4px */
+  margin-bottom: 16px;
   background: var(--bg-alt);
   border-radius: 0 var(--border-radius-pequeno) var(--border-radius-pequeno) 0;
+  letter-spacing: 0.01em;
 }
 
 @media (max-width: 480px) {
   .reflexao-bloco blockquote {
-    font-size: 1.1rem;
-    padding: 14px 14px;
+    font-size: 1rem;
+    padding: 16px 18px;
+    line-height: 1.8;
   }
 }
+
 
 .reflexao-bloco blockquote sup {
   color: var(--cor-primaria);
@@ -739,21 +741,20 @@ input:focus-visible {
 
 .intencao-item p {
   font-family: var(--fonte-titulo);
-  font-weight: 500;
-  font-size: 1.1rem;
+  font-weight: 600; 
+  font-size: 1.05rem;
   color: var(--texto-corpo);
-  line-height: 1.8;
+  line-height: 1.9; 
   margin-top: 10px;
+  letter-spacing: 0.01em;
 }
 
 @media (max-width: 480px) {
   .intencao-item p {
-    font-size: 1.1rem;
-     line-height: 1.7;
-
+    font-size: 1rem;
+    line-height: 1.8;
   }
 }
-
 /* ============= ORAÇÃO COMUM ============= */
 .oracao-comum {
   background: linear-gradient(135deg, var(--marrom-escuro) 0%, var(--marrom-mais-escuro) 100%);
