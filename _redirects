@@ -1,3 +1,0 @@
-# Redireciona tudo que não for /novenas/ para o index
-/novenas/*  /novenas/:splat  200
-/*  /index.html  200
