@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Plano de Leitura Bíblica — A Bíblia no Meu Dia a Dia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F7F2E7;
+    --bg-card: #FFFCF6;
+    --ink: #2E2417;
+    --ink-soft: #5B4E3C;
+    --gold: #A9762F;
+    --gold-deep: #7C5420;
+    --line: #E2D5BA;
+    --quote-bg: #EFE4CB;
+    --check: #6F7D52;
+    --shadow: rgba(60,45,15,0.08);
+  }
+  [data-theme="dark"]{
+    --bg: #18140E;
+    --bg-card: #221B12;
+    --ink: #EDE3CC;
+    --ink-soft: #C2B393;
+    --gold: #D6A84E;
+    --gold-deep: #E9C277;
+    --line: #3A2F1E;
+    --quote-bg: #2A2114;
+    --check: #9CB079;
+    --shadow: rgba(0,0,0,0.35);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Source Serif 4', Georgia, serif;
+    line-height:1.65;
+    transition:background .3s, color .3s;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 28px 120px;}
+  header.hero{
+    text-align:center;
+    padding:72px 20px 36px;
+  }
+  .eyebrow{
+    font-family:'Cormorant Garamond', serif;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    font-size:13px;
+    color:var(--gold);
+    margin-bottom:14px;
+  }
+  h1.title{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    font-size:40px;
+    line-height:1.25;
+    letter-spacing:.01em;
+    margin:0 0 14px;
+    color:var(--ink);
+  }
+  .subtitle{
+    font-style:italic;
+    color:var(--ink-soft);
+    font-size:16px;
+    line-height:1.4;
+    margin:0 0 22px;
+  }
+  .divider{
+    color:var(--gold);
+    letter-spacing:14px;
+    font-size:13px;
+    margin:18px 0;
+  }
+  nav.toc{
+    background:var(--bg-card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:18px 24px;
+    margin:0 0 8px;
+    box-shadow:0 6px 24px var(--shadow);
+  }
+  nav.toc p{
+    margin:0 0 10px;
+    font-size:13px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  nav.toc ul{
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:6px 18px;
+  }
+  nav.toc a{
+    color:var(--ink);
+    text-decoration:none;
+    font-size:15px;
+    border-bottom:1px dotted transparent;
+  }
+  nav.toc a:hover{border-bottom-color:var(--gold);color:var(--gold-deep);}
+
+  .prayer{
+    background:var(--quote-bg);
+    border-left:3px solid var(--gold);
+    border-radius:4px;
+    padding:20px 24px;
+    margin:34px 0;
+    font-style:italic;
+    color:var(--ink-soft);
+    font-size:16.5px;
+  }
+  .prayer .label{
+    display:block;
+    font-style:normal;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--gold-deep);
+    margin-top:14px;
+  }
+
+  section.block{margin:64px 0;}
+  .num{
+    font-family:'Cormorant Garamond', serif;
+    color:var(--gold);
+    font-size:15px;
+    letter-spacing:.2em;
+    margin-bottom:6px;
+  }
+  h2{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    font-size:32px;
+    margin:0 0 18px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:14px;
+  }
+  h3{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    font-size:21px;
+    color:var(--gold-deep);
+    margin:30px 0 6px;
+  }
+  p.lead{color:var(--ink-soft);}
+  .note{
+    background:var(--bg-card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:18px 22px;
+    font-size:15px;
+    color:var(--ink-soft);
+    margin:16px 0;
+  }
+  .note strong{color:var(--ink);}
+
+  .booklist{
+    list-style:none;
+    margin:18px 0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .booklist li{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    padding:11px 4px;
+    border-bottom:1px solid var(--line);
+    font-size:16px;
+  }
+  .booklist li:last-child{border-bottom:none;}
+  .booklist input[type="checkbox"]{
+    appearance:none;
+    width:19px;
+    height:19px;
+    min-width:19px;
+    border:1.5px solid var(--gold);
+    border-radius:4px;
+    margin-top:3px;
+    cursor:pointer;
+    position:relative;
+    background:transparent;
+  }
+  .booklist input[type="checkbox"]:checked{
+    background:var(--check);
+    border-color:var(--check);
+  }
+  .booklist input[type="checkbox"]:checked::after{
+    content:"✓";
+    position:absolute;
+    top:-3px;
+    left:3px;
+    color:#fff;
+    font-size:13px;
+  }
+  .booklist li.done span{
+    color:var(--ink-soft);
+    text-decoration:line-through;
+    text-decoration-color:var(--line);
+  }
+  .tag{
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--gold-deep);
+    background:var(--quote-bg);
+    border-radius:20px;
+    padding:2px 9px;
+    margin-left:8px;
+    white-space:nowrap;
+  }
+
+  .progress-wrap{
+    margin:10px 0 20px;
+  }
+  .progress-bar{
+    height:8px;
+    background:var(--line);
+    border-radius:6px;
+    overflow:hidden;
+  }
+  .progress-fill{
+    height:100%;
+    background:var(--gold);
+    width:0%;
+    transition:width .4s ease;
+  }
+  .progress-label{
+    font-size:13px;
+    color:var(--ink-soft);
+    margin-top:6px;
+    text-align:right;
+  }
+
+  .quote-block{
+    text-align:center;
+    font-style:italic;
+    color:var(--ink-soft);
+    margin:36px auto;
+    max-width:540px;
+    font-size:17px;
+  }
+  .quote-block .attr{
+    display:block;
+    margin-top:8px;
+    font-style:normal;
+    font-size:13px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--gold-deep);
+  }
+
+  .liturgy-card{
+    background:var(--bg-card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:26px 26px 22px;
+    box-shadow:0 6px 24px var(--shadow);
+  }
+  .liturgy-card a{
+    color:var(--gold-deep);
+    text-decoration:none;
+    border-bottom:1px solid var(--gold);
+  }
+  .routine-steps{
+    list-style:none;
+    counter-reset:step;
+    padding:0;
+    margin:18px 0 0;
+  }
+  .routine-steps li{
+    counter-increment:step;
+    position:relative;
+    padding:6px 0 6px 38px;
+    font-size:15.5px;
+  }
+  .routine-steps li::before{
+    content: counter(step);
+    position:absolute;
+    left:0;
+    top:5px;
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    border:1px solid var(--gold);
+    color:var(--gold-deep);
+    font-family:'Cormorant Garamond',serif;
+    font-size:13px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .commitments{
+    list-style:none;
+    padding:0;
+    margin:16px 0;
+  }
+  .commitments li{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    padding:9px 0;
+    border-bottom:1px solid var(--line);
+    font-size:15.5px;
+    color:var(--ink-soft);
+  }
+  .commitments li:last-child{border-bottom:none;}
+  .commitments input{margin-top:3px;}
+
+  footer{
+    text-align:center;
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--line);
+    color:var(--ink-soft);
+    font-size:13px;
+  }
+  footer .glyph{color:var(--gold);font-size:16px;display:block;margin-bottom:8px;}
+
+  .theme-toggle{
+    position:fixed;
+    top:22px;
+    right:22px;
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    border:1px solid var(--line);
+    background:var(--bg-card);
+    cursor:pointer;
+    font-size:17px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 4px 14px var(--shadow);
+    z-index:50;
+  }
+  .top-btn{
+    position:fixed;
+    bottom:24px;
+    right:22px;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    border:1px solid var(--line);
+    background:var(--bg-card);
+    color:var(--gold-deep);
+    cursor:pointer;
+    box-shadow:0 4px 14px var(--shadow);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .25s;
+    z-index:50;
+  }
+  .top-btn.show{opacity:1;pointer-events:auto;}
+
+  @media (max-width:520px){
+    h1.title{font-size:36px;}
+    nav.toc ul{grid-template-columns:1fr;}
+    .wrap{padding:0 18px 100px;}
+  }
+
+  
+/* ============= MENU DE NAVEGAÇÃO ============= */
+
+.nav-botoes {
+  margin-bottom: 32px;
+}
+
+@media (max-width: 480px) {
+  .nav-botoes {
+    margin-bottom: 24px;
+  }
+}
+
+.nav-botoes-lista {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media (max-width: 480px) {
+  .nav-botoes-lista {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+/* ===== BOTÃO INDIVIDUAL ===== */
+.nav-botao {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 24px;
+  background: var(--bg-cartao);
+  border: 1px solid var(--borda);
+  border-radius: var(--border-radius-padrao);
+  font-family: var(--fonte-corpo);
+  font-size: var(--texto-pequeno);
+  font-weight: 500;
+  color: var(--texto-terciario);
+  text-decoration: none;
+  transition: all var(--transicao-rapida);
+  box-shadow: var(--sombra-sutil);
+  flex: 1;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 480px) {
+  .nav-botao {
+    padding: 12px 18px;
+    font-size: var(--texto-pequeno);
+    justify-content: flex-start;
+    gap: 10px;
+  }
+}
+
+/* Efeito de hover */
+.nav-botao:hover {
+  background: var(--bg-alt);
+  border-color: var(--borda-ouro);
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-media);
+}
+
+.nav-botao:active {
+  transform: translateY(0px) scale(0.98);
+}
+
+/* Estado ativo */
+.nav-botao.ativo {
+  background: var(--bg-secao-header);
+  border-color: var(--borda-ouro);
+  color: var(--off-white);
+  box-shadow: 0 4px 16px rgba(45, 31, 22, 0.15);
+}
+
+.nav-botao.ativo:hover {
+  background: var(--bg-secao-header);
+  border-color: var(--cor-primaria-hover);
+  box-shadow: 0 4px 20px rgba(45, 31, 22, 0.25);
+}
+
+/* Linha decorativa no botão ativo */
+.nav-botao.ativo::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+  right: 20%;
+  height: 3px;
+  background: var(--cor-primaria);
+  border-radius: 3px 3px 0 0;
+}
+
+@media (max-width: 480px) {
+  .nav-botao.ativo::before {
+    left: 12px;
+    right: 12px;
+  }
+}
+
+/* ===== ICONE ===== */
+.nav-botao-icone {
+  font-size: 1.2rem;
+  line-height: 1;
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+
+.nav-botao.ativo .nav-botao-icone {
+  opacity: 1;
+}
+
+@media (max-width: 480px) {
+  .nav-botao-icone {
+    font-size: 1.1rem;
+  }
+}
+
+/* ===== TEXTO ===== */
+.nav-botao-texto {
+  flex: 1;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 480px) {
+  .nav-botao-texto {
+    text-align: left;
+    font-weight: 500;
+  }
+}
+
+/* ===== BADGE ===== */
+.nav-botao-badge {
+  font-size: var(--texto-muito-pequeno);
+  font-weight: 700;
+  color: var(--texto-apoio);
+  background: var(--bg-alt);
+  padding: 3px 12px;
+  border-radius: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid var(--borda-fraca);
+  transition: all var(--transicao-rapida);
+  flex-shrink: 0;
+}
+
+.nav-botao.ativo .nav-botao-badge {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--cor-primaria-hover);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+@media (max-width: 480px) {
+  .nav-botao-badge {
+    font-size: 0.6rem;
+    padding: 2px 10px;
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 400px) {
+  .nav-botao-badge {
+    display: none;
+  }
+}
+
+/* ===== ANIMAÇÃO DE ENTRADA ===== */
+@keyframes fadeSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav-botoes {
+  animation: fadeSlideDown 0.4s ease-out;
+}
+
+/* ===== ACESSIBILIDADE ===== */
+.nav-botao:focus-visible {
+  outline: 3px solid var(--cor-primaria);
+  outline-offset: 3px;
+}
+
+/* ===== RESPONSIVIDADE ADICIONAL ===== */
+@media (min-width: 481px) and (max-width: 600px) {
+  .nav-botao {
+    padding: 12px 18px;
+    font-size: var(--texto-muito-pequeno);
+    gap: 8px;
+  }
+
+  .nav-botao-badge {
+    font-size: 0.55rem;
+    padding: 2px 8px;
+  }
+
+  .nav-botao-icone {
+    font-size: 1rem;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">🌙</button>
+<button class="top-btn" id="topBtn" aria-label="Voltar ao topo">↑</button>
+
+<div class="wrap">
+
+  <header class="hero">
+    <h1 class="title">Plano de Leitura da Bíblia</h1>
+    <p class="subtitle">Segundo o método de Monsenhor Jonas Abib — com a Liturgia Diária</p>
+    <div class="divider">◆ ◆ ◆</div>
+  </header>
+   <nav class="nav-botoes" aria-label="Navegação principal">
+    <ul class="nav-botoes-lista">
+      <li>
+        <a href="/index.html" class="nav-botao">
+          <span class="nav-botao-texto">Exame de Consciência</span>
+        </a>
+      </li>
+      <li>
+        <a href="/novenas/josemariaescriva.html" class="nav-botao">
+          <span class="nav-botao-texto">Novena do Trabalho</span>
+        </a>
+      </li>
+       <li>
+        <a href="planoleitura.html" class="nav-botao ativo">
+          <span class="nav-botao-texto">Plano de leitura Bíblica</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <div class="prayer" id="sec-oracao">
+    Vem, Espírito Santo, abre o meu coração para a tua Palavra.
+    Que eu não leia a Bíblia como quem estuda um livro qualquer,
+    mas como quem escuta a voz de um Pai que fala todos os dias comigo.
+    São Josemaria Escrivá, ensina-me a fazer da leitura da Escritura
+    um hábito tão natural quanto o trabalho de cada dia.
+    <span class="label">Oração antes da leitura</span>
+  </div>
+
+  <section class="block" id="sec-nt">
+    <div class="num">I</div>
+    <h2>Novo Testamento — por onde começar</h2>
+    <p class="lead">Monsenhor Jonas Abib não começa pelo Gênesis. Começa pela certeza da salvação. Marque cada leitura concluída — o progresso fica salvo neste navegador.</p>
+
+    <div class="note">
+      <strong>Por que começar pela 1ª Carta de São João?</strong> Porque, de todos os 73 livros, é o único escrito com o propósito explícito de te dar a certeza de que és salva. "Isto vos escrevi para que saibais que tendes a vida eterna" (1 Jo 5,13).
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-bar"><div class="progress-fill" id="fill-nt"></div></div>
+      <div class="progress-label"><span id="count-nt">0</span> de <span id="total-nt">0</span> leituras concluídas</div>
+    </div>
+
+    <ul class="booklist" data-group="nt">
+      <li><input type="checkbox" data-id="nt-1"><span>1ª Carta de São João <span class="tag">1ª vez</span></span></li>
+      <li><input type="checkbox" data-id="nt-2"><span>Evangelho de São João</span></li>
+      <li><input type="checkbox" data-id="nt-3"><span>Evangelho de São Marcos</span></li>
+      <li><input type="checkbox" data-id="nt-4"><span>Gálatas</span></li>
+      <li><input type="checkbox" data-id="nt-5"><span>Efésios</span></li>
+      <li><input type="checkbox" data-id="nt-6"><span>Filipenses</span></li>
+      <li><input type="checkbox" data-id="nt-7"><span>Colossenses</span></li>
+      <li><input type="checkbox" data-id="nt-8"><span>1ª Tessalonicenses</span></li>
+      <li><input type="checkbox" data-id="nt-9"><span>2ª Tessalonicenses</span></li>
+      <li><input type="checkbox" data-id="nt-10"><span>1ª Timóteo</span></li>
+      <li><input type="checkbox" data-id="nt-11"><span>2ª Timóteo</span></li>
+      <li><input type="checkbox" data-id="nt-12"><span>Tito</span></li>
+      <li><input type="checkbox" data-id="nt-13"><span>Filêmon</span></li>
+      <li><input type="checkbox" data-id="nt-14"><span>Evangelho de São Lucas</span></li>
+      <li><input type="checkbox" data-id="nt-15"><span>Atos dos Apóstolos</span></li>
+      <li><input type="checkbox" data-id="nt-16"><span>Carta aos Romanos</span></li>
+      <li><input type="checkbox" data-id="nt-17"><span>Evangelho de São Mateus</span></li>
+      <li><input type="checkbox" data-id="nt-18"><span>1ª Carta aos Coríntios</span></li>
+      <li><input type="checkbox" data-id="nt-19"><span>2ª Carta aos Coríntios</span></li>
+      <li><input type="checkbox" data-id="nt-20"><span>Hebreus</span></li>
+      <li><input type="checkbox" data-id="nt-21"><span>Carta de São Tiago</span></li>
+      <li><input type="checkbox" data-id="nt-22"><span>1ª Carta de São Pedro</span></li>
+      <li><input type="checkbox" data-id="nt-23"><span>2ª Carta de São Pedro</span></li>
+      <li><input type="checkbox" data-id="nt-24"><span>2ª Carta de São João</span></li>
+      <li><input type="checkbox" data-id="nt-25"><span>3ª Carta de São João</span></li>
+      <li><input type="checkbox" data-id="nt-26"><span>Carta de São Judas</span></li>
+      <li><input type="checkbox" data-id="nt-27"><span>Apocalipse</span></li>
+      <li><input type="checkbox" data-id="nt-28"><span>1ª Carta de São João <span class="tag">3ª vez</span></span></li>
+      <li><input type="checkbox" data-id="nt-29"><span>Evangelho de São João <span class="tag">2ª vez</span></span></li>
+    </ul>
+  </section>
+
+  <section class="block" id="sec-at">
+    <div class="num">II</div>
+    <h2>Antigo Testamento — ordem cronológica</h2>
+    <p class="lead">Antes de seguir esta lista, comece pelos três livros sapienciais — Sabedoria, Eclesiástico e Provérbios — como "portal de entrada" do Antigo Testamento. Depois, siga esta sequência cronológica, das origens até a vinda de Cristo.</p>
+
+    <div class="progress-wrap">
+      <div class="progress-bar"><div class="progress-fill" id="fill-at"></div></div>
+      <div class="progress-label"><span id="count-at">0</span> de <span id="total-at">0</span> leituras concluídas</div>
+    </div>
+
+    <div class="note">
+      <strong>Use uma Bíblia com aprovação eclesiástica.</strong> Para a leitura espiritual, prefira edições católicas completas (com os 73 livros), como a Bíblia Ave-Maria ou a Bíblia Pastoral.
+    </div>
+
+    <h3>Portal de entrada</h3>
+    <ul class="booklist" data-group="at">
+      <li><input type="checkbox" data-id="at-0a"><span>Provérbios</span></li>
+      <li><input type="checkbox" data-id="at-0b"><span>Sabedoria</span></li>
+      <li><input type="checkbox" data-id="at-0c"><span>Eclesiástico (Sirácida)</span></li>
+    </ul>
+
+    <div class="note">
+      <strong>Sobre os "saltos" na ordem cronológica:</strong> você vai notar que a lista pula entre profetas, reis e crônicas sem seguir a ordem impressa. Isso é proposital — segue a linha do tempo real de Israel. Mas profetas como Amós, Oseias e Isaías só fazem pleno sentido com um mínimo de contexto histórico (reino dividido, ameaças e exílio). Vale a pena, antes de cada um, ler um resumo breve do pano de fundo histórico — qualquer Bíblia católica anotada traz isso na introdução do livro.
+    </div>
+
+    <h3>Ordem cronológica</h3>
+    <ul class="booklist" data-group="at">
+      <li><input type="checkbox" data-id="at-1"><span>Gênesis</span></li>
+      <li><input type="checkbox" data-id="at-2"><span>Êxodo</span></li>
+      <li><input type="checkbox" data-id="at-3"><span>Números</span></li>
+      <li><input type="checkbox" data-id="at-4"><span>Josué</span></li>
+      <li><input type="checkbox" data-id="at-5"><span>Juízes</span></li>
+      <li><input type="checkbox" data-id="at-6"><span>1º Samuel</span></li>
+      <li><input type="checkbox" data-id="at-7"><span>2º Samuel</span></li>
+      <li><input type="checkbox" data-id="at-8"><span>1º Reis</span></li>
+      <li><input type="checkbox" data-id="at-9"><span>2º Reis</span></li>
+      <li><input type="checkbox" data-id="at-10"><span>Amós</span></li>
+      <li><input type="checkbox" data-id="at-11"><span>Oséias</span></li>
+      <li><input type="checkbox" data-id="at-12"><span>Isaías (capítulos 1–39)</span></li>
+      <li><input type="checkbox" data-id="at-13"><span>Miquéias</span></li>
+      <li><input type="checkbox" data-id="at-14"><span>Naum</span></li>
+      <li><input type="checkbox" data-id="at-15"><span>Sofonias</span></li>
+      <li><input type="checkbox" data-id="at-16"><span>Habacuc</span></li>
+      <li><input type="checkbox" data-id="at-17"><span>Jeremias</span></li>
+      <li><input type="checkbox" data-id="at-18"><span>Lamentações</span></li>
+      <li><input type="checkbox" data-id="at-19"><span>Ezequiel</span></li>
+      <li><input type="checkbox" data-id="at-20"><span>Abdias</span></li>
+      <li><input type="checkbox" data-id="at-21"><span>Isaías (capítulos 40–55)</span></li>
+      <li><input type="checkbox" data-id="at-22"><span>1º Crônicas</span></li>
+      <li><input type="checkbox" data-id="at-23"><span>2º Crônicas</span></li>
+      <li><input type="checkbox" data-id="at-24"><span>Esdras</span></li>
+      <li><input type="checkbox" data-id="at-25"><span>Neemias</span></li>
+      <li><input type="checkbox" data-id="at-26"><span>Ageu</span></li>
+      <li><input type="checkbox" data-id="at-27"><span>Zacarias</span></li>
+      <li><input type="checkbox" data-id="at-28"><span>Isaías (capítulos 56–66)</span></li>
+      <li><input type="checkbox" data-id="at-29"><span>Malaquias</span></li>
+      <li><input type="checkbox" data-id="at-30"><span>Joel</span></li>
+      <li><input type="checkbox" data-id="at-31"><span>Jonas</span></li>
+      <li><input type="checkbox" data-id="at-32"><span>Rute</span></li>
+      <li><input type="checkbox" data-id="at-33"><span>Tobias</span></li>
+      <li><input type="checkbox" data-id="at-34"><span>Judite</span></li>
+      <li><input type="checkbox" data-id="at-35"><span>Ester</span></li>
+      <li><input type="checkbox" data-id="at-36"><span>Cântico dos Cânticos</span></li>
+      <li><input type="checkbox" data-id="at-37"><span>Jó</span></li>
+      <li><input type="checkbox" data-id="at-38"><span>Eclesiastes</span></li>
+      <li><input type="checkbox" data-id="at-39"><span>1º Macabeus</span></li>
+      <li><input type="checkbox" data-id="at-40"><span>2º Macabeus</span></li>
+      <li><input type="checkbox" data-id="at-41"><span>Baruc</span></li>
+      <li><input type="checkbox" data-id="at-42"><span>Daniel</span></li>
+      <li><input type="checkbox" data-id="at-43"><span>Levítico</span></li>
+      <li><input type="checkbox" data-id="at-44"><span>Deuteronômio</span></li>
+    </ul>
+  </section>
+
+  <section class="block" id="sec-salmos">
+    <div class="num">III</div>
+    <h2>Os Salmos</h2>
+    <div class="quote-block">
+      "Salmo é como fruta: comemos a qualquer hora, pouco importando as refeições.
+      E nunca faz mal. Sempre faz bem."
+      <span class="attr">Monsenhor Jonas Abib</span>
+    </div>
+    <p class="lead">Não há sequência fixa para os Salmos neste método. Leia um quando sentir vontade — antes de dormir, no meio de um dia difícil, ou junto de qualquer outra leitura. Eles são o "portal de entrada" e também o "livro de cabeceira" de toda a jornada pelo Antigo Testamento.</p>
+  </section>
+
+  <section class="block" id="sec-liturgia">
+    <div class="num">IV</div>
+    <h2>Liturgia Diária — para acompanhar a Igreja todos os dias</h2>
+    <div class="liturgy-card">
+      <p class="lead" style="margin-top:0">Todos os dias, a Canção Nova disponibiliza as leituras da Missa: 1ª Leitura, Salmo responsorial, 2ª Leitura (em domingos e solenidades) e Evangelho — com reflexão em texto e áudio.</p>
+      <p>🔗 Site: <a href="https://liturgia.cancaonova.com/pb/" target="_blank" rel="noopener">liturgia.cancaonova.com</a><br>
+      📱 App: <em>Liturgia Diária – Canção Nova</em> (Android e iOS)</p>
+
+      <h3 style="margin-top:26px">Sugestão de rotina diária (10–15 min)</h3>
+      <ol class="routine-steps">
+        <li>Leituras da Liturgia Diária do dia — 5 a 7 minutos</li>
+        <li>Um trecho do plano sequencial (Novo ou Antigo Testamento, acima) — 5 a 8 minutos</li>
+        <li>Anotar no Diário Espiritual o trecho lido e as promessas de Deus encontradas</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block" id="sec-diario">
+    <div class="num">V</div>
+    <h2>Diário Espiritual — como registrar cada leitura</h2>
+    <p class="lead">Parte essencial do método: um caderno (ou app de notas) só para isso. Não precisa ser longo — só sincero.</p>
+
+    <h3>1. Data e referência</h3>
+    <p>Anote a data e o trecho lido — por exemplo: "19/06 — 1Jo 1,2".</p>
+
+    <h3>2. A promessa de Deus encontrada</h3>
+    <p>É a primeira coisa a registrar todos os dias. São promessas Dele, não dos homens — e Ele as cumpre. Sublinhe ou risque no texto para encontrá-las com mais facilidade depois.</p>
+
+    <h3>3. Uma frase sua</h3>
+    <p>O que esse trecho disse à sua vida hoje? Uma linha basta.</p>
+
+    <div class="note">
+      <strong>Não tenha pressa.</strong> É normal não entender tudo de imediato — à medida que você lê, as coisas vão se esclarecendo. Continue. A Bíblia se explica por si mesma.
+    </div>
+  </section>
+
+  <section class="block" id="sec-proposito">
+    <div class="num">VI</div>
+    <h2>Meus Compromissos de Leitura</h2>
+    <ul class="commitments">
+      <li><input type="checkbox" data-id="c-1"><span>Escolher um horário fixo do dia para a leitura — mesmo que sejam só 10 minutos</span></li>
+      <li><input type="checkbox" data-id="c-2"><span>Começar pela 1ª Carta de São João, sem pular para o Antigo Testamento ainda</span></li>
+      <li><input type="checkbox" data-id="c-3"><span>Ter um caderno (ou nota no celular) só para o Diário Espiritual</span></li>
+    </ul>
+  </section>
+
+  <section class="block" id="sec-hoje">
+    <div class="num">VII</div>
+    <h2>Meu Dia a Dia</h2>
+    <p class="lead">Um checklist simples para marcar a cada dia — desmarque no dia seguinte para recomeçar.</p>
+    <div class="note">
+      Marcar essas caixinhas é só um apoio para a constância, não uma régua. Deus não está medindo desempenho — o que importa é o coração que se abre à Palavra, marcado ou não.
+    </div>
+    <ul class="commitments">
+      <li><input type="checkbox" data-id="d-1"><span>Abrir a Liturgia Diária antes ou depois da leitura sequencial</span></li>
+      <li><input type="checkbox" data-id="d-2"><span>Ler o trecho do dia (Novo ou Antigo Testamento)</span></li>
+      <li><input type="checkbox" data-id="d-3"><span>Escrever no Diário Espiritual a promessa de Deus encontrada na leitura</span></li>
+    </ul>
+  </section>
+
+  <div class="quote-block">
+    "Traze sempre na boca as palavras deste livro da lei; medita-o dia e noite...
+    e serás bem-sucedido."
+    <span class="attr">Josué 1,8</span>
+  </div>
+
+  <footer>
+    <span class="glyph">✠</span>
+    Inspirado no método "A Bíblia no Meu Dia a Dia" de Monsenhor Jonas Abib — Comunidade Canção Nova
+  </footer>
+
+</div>
+
+<script>
+  // Theme toggle
+  const themeToggle = document.getElementById('themeToggle');
+  const root = document.documentElement;
+  function setTheme(t){
+    root.setAttribute('data-theme', t);
+    themeToggle.textContent = t === 'dark' ? '☀️' : '🌙';
+    try{ window.localStorage.setItem('plano-biblia-theme', t); }catch(e){}
+  }
+  let initial = 'light';
+  try{
+    const saved = window.localStorage.getItem('plano-biblia-theme');
+    if(saved){ initial = saved; }
+    else if(window.matchMedia('(prefers-color-scheme: dark)').matches){ initial = 'dark'; }
+  }catch(e){}
+  setTheme(initial);
+  themeToggle.addEventListener('click', () => {
+    setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+
+  // Back to top
+  const topBtn = document.getElementById('topBtn');
+  window.addEventListener('scroll', () => {
+    topBtn.classList.toggle('show', window.scrollY > 400);
+  });
+  topBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+  // Checklist persistence + progress bars
+  function loadState(){
+    try{ return JSON.parse(window.localStorage.getItem('plano-biblia-checks') || '{}'); }
+    catch(e){ return {}; }
+  }
+  function saveState(state){
+    try{ window.localStorage.setItem('plano-biblia-checks', JSON.stringify(state)); }catch(e){}
+  }
+  const state = loadState();
+  const allChecks = document.querySelectorAll('input[type="checkbox"][data-id]');
+  allChecks.forEach(cb => {
+    const id = cb.dataset.id;
+    if(state[id]){ cb.checked = true; cb.closest('li').classList.add('done'); }
+    cb.addEventListener('change', () => {
+      state[id] = cb.checked;
+      saveState(state);
+      cb.closest('li').classList.toggle('done', cb.checked);
+      updateProgress();
+    });
+  });
+
+  function updateProgress(){
+    ['nt','at'].forEach(group => {
+      const boxes = document.querySelectorAll(`[data-group="${group}"] input[type="checkbox"]`);
+      const total = boxes.length;
+      const done = Array.from(boxes).filter(b => b.checked).length;
+      const fill = document.getElementById('fill-' + group);
+      const countEl = document.getElementById('count-' + group);
+      const totalEl = document.getElementById('total-' + group);
+      if(fill){ fill.style.width = total ? (done/total*100) + '%' : '0%'; }
+      if(countEl){ countEl.textContent = done; }
+      if(totalEl){ totalEl.textContent = total; }
+    });
+  }
+  updateProgress();
+</script>
+
+</body>
+</html>
